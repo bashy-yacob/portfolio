@@ -5,6 +5,33 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>בשי יעקב | מפתחת אתרים ופיתוח Full-Stack</title>
 <meta name="description" content="בשי יעקב — מפתחת אתרים. בניית אתרי תדמית, חנויות ומערכות web. צרי קשר לפרויקט הבא שלך." />
+
+<!-- ===== branding / SEO / social ===== -->
+<link rel="icon" href="favicon.svg" type="image/svg+xml" />
+<link rel="apple-touch-icon" href="favicon.svg" />
+<link rel="canonical" href="https://bashy-yacob.github.io/portfolio/" />
+<meta name="theme-color" content="#f6f4ef" media="(prefers-color-scheme: light)" />
+<meta name="theme-color" content="#1a1815" media="(prefers-color-scheme: dark)" />
+<meta name="author" content="בשי יעקב" />
+<meta name="robots" content="index, follow" />
+
+<!-- Open Graph (WhatsApp / Facebook / LinkedIn) -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="בשי יעקב" />
+<meta property="og:title" content="בשי יעקב | מפתחת אתרים ופיתוח Full-Stack" />
+<meta property="og:description" content="בניית אתרי תדמית, חנויות ומערכות web מהירות, נקיות ורספונסיביות. בואו נהפוך את הרעיון שלכם לאתר חי." />
+<meta property="og:url" content="https://bashy-yacob.github.io/portfolio/" />
+<meta property="og:image" content="https://bashy-yacob.github.io/portfolio/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:locale" content="he_IL" />
+
+<!-- Twitter / X -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="בשי יעקב | מפתחת אתרים ופיתוח Full-Stack" />
+<meta name="twitter:description" content="בניית אתרי תדמית, חנויות ומערכות web מהירות, נקיות ורספונסיביות." />
+<meta name="twitter:image" content="https://bashy-yacob.github.io/portfolio/og-image.png" />
+
 <!--
   ============================================================
   אתר פורטפוליו — קובץ יחיד, עצמאי. כל התוכן והעיצוב כאן.
@@ -33,7 +60,27 @@
     --dirsign: -1;
     --serif: "Frank Ruhl Libre", Georgia, "Times New Roman", serif;
     --sans: "Assistant", system-ui, -apple-system, "Segoe UI", "Noto Sans Hebrew", sans-serif;
+    --nav-bg: rgba(246,244,239,.82);
+    color-scheme: light;
   }
+
+  /* opt-in warm dark mode */
+  html[data-theme="dark"] {
+    --bg: #1a1815;
+    --surface: #221f1b;
+    --surface-2: #2a2622;
+    --ink: #f2efe9;
+    --muted: #a8a298;
+    --line: #36312b;
+    --accent: #d98a5f;
+    --accent-2: #e6a07c;
+    --accent-tint: rgba(217,138,95,.14);
+    --shadow: 0 18px 40px rgba(0,0,0,.4);
+    --nav-bg: rgba(26,24,21,.82);
+    color-scheme: dark;
+  }
+  html { transition: background-color .3s; }
+  body { transition: background-color .3s, color .3s; }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
@@ -65,7 +112,7 @@
   header.nav {
     position: sticky; top: 0; z-index: 50;
     backdrop-filter: blur(10px);
-    background: rgba(246,244,239,.82);
+    background: var(--nav-bg);
     border-bottom: 1px solid var(--line);
   }
   .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 16px 0; }
@@ -81,6 +128,11 @@
     font-family: var(--sans); transition: border-color .2s, color .2s;
   }
   .lang-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .icon-btn { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 999px;
+    border: 1px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer;
+    transition: border-color .2s, color .2s, transform .2s; }
+  .icon-btn:hover { border-color: var(--accent); color: var(--accent); transform: rotate(-12deg); }
+  .icon-btn .icon { width: 18px; height: 18px; }
   .menu-toggle { display: none; background: none; border: none; color: var(--ink); cursor: pointer; padding: 4px; }
 
   /* ---------- BUTTONS ---------- */
@@ -201,6 +253,45 @@
   .foot-soc a:hover { border-color: var(--accent); color: var(--accent); }
   .foot-soc .icon { width: 19px; height: 19px; }
 
+  /* ---------- TESTIMONIALS ---------- */
+  .quote-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 28px; transition: transform .18s, border-color .2s, box-shadow .2s; }
+  .quote-card:hover { transform: translateY(-4px); border-color: rgba(176,81,46,.4); box-shadow: var(--shadow); }
+  .quote-card .qmark { color: var(--accent); margin-bottom: 12px; }
+  .quote-card .qmark .icon { width: 30px; height: 30px; stroke-width: 1.4; }
+  .quote-card p { font-family: var(--serif); font-size: 1.08rem; line-height: 1.6; }
+  .quote-card .who { margin-top: 18px; display: flex; align-items: center; gap: 12px; }
+  .quote-card .who .ava { width: 42px; height: 42px; flex: none; border-radius: 50%; background: var(--accent-tint);
+    color: var(--accent); display: grid; place-items: center; font-weight: 700; font-family: var(--serif); }
+  .quote-card .who b { display: block; font-size: .95rem; }
+  .quote-card .who span { color: var(--muted); font-size: .85rem; }
+
+  /* ---------- richer project hover ---------- */
+  .proj .ic { transition: transform .25s, background .25s, color .25s; }
+  .proj:hover .ic { transform: scale(1.08) rotate(-4deg); background: var(--accent); color: #fff; }
+
+  /* ---------- scroll reveal ---------- */
+  .reveal { opacity: 0; transform: translateY(22px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+
+  /* ---------- floating whatsapp ---------- */
+  .wa-float { position: fixed; bottom: 22px; inset-inline-end: 22px; z-index: 60;
+    width: 56px; height: 56px; border-radius: 50%; background: var(--accent); color: #fff;
+    display: grid; place-items: center; box-shadow: 0 12px 28px rgba(176,81,46,.4);
+    transition: transform .2s, background .2s; animation: wa-in .4s ease .8s both; }
+  .wa-float:hover { transform: scale(1.08); background: var(--accent-2); }
+  .wa-float .icon { width: 26px; height: 26px; }
+  @keyframes wa-in { from { transform: scale(0); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+  /* ---------- respect reduced motion ---------- */
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1 !important; transform: none !important; transition: none; }
+    .wa-float { animation: none; }
+    .btn:hover, .card:hover, .quote-card:hover, .proj:hover .ic, .icon-btn:hover { transform: none; }
+    html, body { transition: none; }
+    html { scroll-behavior: auto; }
+  }
+
   /* ---------- RESPONSIVE ---------- */
   @media (max-width: 860px) {
     section { padding: 64px 0; }
@@ -217,6 +308,21 @@
     .menu-toggle { display: block; z-index: 60; }
   }
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "בשי יעקב",
+  "alternateName": "Bashy Yacob",
+  "jobTitle": "Web Developer",
+  "email": "mailto:bashy3309@gmail.com",
+  "telephone": "+972548473309",
+  "url": "https://bashy-yacob.github.io/portfolio/",
+  "image": "https://bashy-yacob.github.io/portfolio/og-image.png",
+  "sameAs": ["https://github.com/bashy-yacob"],
+  "knowsAbout": ["React", "TypeScript", "JavaScript", "Next.js", "Node.js", "Web Development"]
+}
+</script>
 </head>
 <body>
 
@@ -240,6 +346,9 @@
   <symbol id="i-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></symbol>
   <symbol id="i-send" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></symbol>
   <symbol id="i-code" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2"/><line x1="12" y1="2.5" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="21.5"/><line x1="2.5" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="21.5" y2="12"/><line x1="4.9" y1="4.9" x2="6.7" y2="6.7"/><line x1="17.3" y1="17.3" x2="19.1" y2="19.1"/><line x1="4.9" y1="19.1" x2="6.7" y2="17.3"/><line x1="17.3" y1="6.7" x2="19.1" y2="4.9"/></symbol>
+  <symbol id="i-quote" viewBox="0 0 24 24"><path d="M7.5 6C5 6 3.5 8 3.5 10.5S5 15 7.5 15c0 2.2-1.4 3.4-3 4M17.5 6C15 6 13.5 8 13.5 10.5S15 15 17.5 15c0 2.2-1.4 3.4-3 4"/></symbol>
 </defs></svg>
 
 <!-- ===================== NAV ===================== -->
@@ -249,11 +358,13 @@
     <nav class="nav-links" id="navLinks">
       <a href="#services" data-i18n="nav.services">שירותים</a>
       <a href="#projects" data-i18n="nav.projects">פרויקטים</a>
+      <a href="#testimonials" data-i18n="nav.testimonials">המלצות</a>
       <a href="#about" data-i18n="nav.about">אודות</a>
       <a href="#skills" data-i18n="nav.skills">כישורים</a>
       <a href="#contact" data-i18n="nav.contact">צור קשר</a>
     </nav>
     <div style="display:flex;gap:10px;align-items:center;">
+      <button class="icon-btn" id="themeBtn" aria-label="toggle theme" onclick="toggleTheme()"><svg class="icon"><use href="#i-moon"/></svg></button>
       <button class="lang-btn" id="langBtn" onclick="toggleLang()">EN</button>
       <button class="menu-toggle" id="menuToggle" aria-label="menu" onclick="toggleMenu()"><svg class="icon"><use href="#i-menu"/></svg></button>
     </div>
@@ -392,6 +503,34 @@
   </div>
 </section>
 
+<!-- ===================== TESTIMONIALS =====================
+     להחלפה בהמלצות אמיתיות: ערכי את הטקסט וה-data-i18n (tst.*) למטה.
+     אפשר להוסיף/להסיר כרטיסים — פשוט שכפלי בלוק .quote-card. -->
+<section id="testimonials">
+  <div class="wrap">
+    <span class="eyebrow" data-i18n="tst.eyebrow">המלצות</span>
+    <h2 class="title" data-i18n="tst.title">מה לקוחות אומרים</h2>
+    <p class="lead" data-i18n="tst.lead">כמה מילים מאנשים שעבדתי איתם. (תוכן לדוגמה — החליפי בהמלצות אמיתיות.)</p>
+    <div class="grid cards-3" style="margin-top:36px;">
+      <div class="quote-card">
+        <div class="qmark"><svg class="icon"><use href="#i-quote"/></svg></div>
+        <p data-i18n="tst.1.q">"בשי הקשיבה בדיוק למה שרצינו ובנתה לנו אתר שנראה מדהים ועובד מהר. תקשורת נעימה לכל אורך הדרך."</p>
+        <div class="who"><span class="ava" data-i18n="tst.1.i">ד</span><span><b data-i18n="tst.1.n">דנה ל.</b><span data-i18n="tst.1.r">בעלת עסק</span></span></div>
+      </div>
+      <div class="quote-card">
+        <div class="qmark"><svg class="icon"><use href="#i-quote"/></svg></div>
+        <p data-i18n="tst.2.q">"קיבלנו אתר חנות מקצועי בזמן קצר, בדיוק לפי התקציב. ממליצים בחום על העבודה איתה."</p>
+        <div class="who"><span class="ava" data-i18n="tst.2.i">מ</span><span><b data-i18n="tst.2.n">מאיר כ.</b><span data-i18n="tst.2.r">מנהל חנות אונליין</span></span></div>
+      </div>
+      <div class="quote-card">
+        <div class="qmark"><svg class="icon"><use href="#i-quote"/></svg></div>
+        <p data-i18n="tst.3.q">"מקצועית, אחראית וזמינה. האתר החדש שלנו מביא הרבה יותר פניות מבעבר. תודה!"</p>
+        <div class="who"><span class="ava" data-i18n="tst.3.i">ש</span><span><b data-i18n="tst.3.n">שירה ב.</b><span data-i18n="tst.3.r">מטפלת ויועצת</span></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ===================== ABOUT + EXPERIENCE ===================== -->
 <section id="about">
   <div class="wrap grid two-col">
@@ -501,6 +640,9 @@
   </div>
 </section>
 
+<!-- ===================== FLOATING WHATSAPP ===================== -->
+<a class="wa-float" href="https://wa.me/972548473309" target="_blank" rel="noopener" aria-label="WhatsApp"><svg class="icon"><use href="#i-chat"/></svg></a>
+
 <!-- ===================== FOOTER ===================== -->
 <footer>
   <div class="wrap foot-inner">
@@ -520,7 +662,7 @@
 const I18N = {
   he: {
     "brand": "בשי יעקב",
-    "nav.services": "שירותים", "nav.projects": "פרויקטים", "nav.about": "אודות", "nav.skills": "כישורים", "nav.contact": "צור קשר",
+    "nav.services": "שירותים", "nav.projects": "פרויקטים", "nav.testimonials": "המלצות", "nav.about": "אודות", "nav.skills": "כישורים", "nav.contact": "צור קשר",
     "hero.eyebrow": "מפתחת Full-Stack & בניית אתרים",
     "hero.title": 'בונה אתרים <span class="hl">שמביאים תוצאות</span>',
     "hero.sub": "היי, אני בשי — מפתחת אתרים. אני בונה אתרי תדמית, חנויות ומערכות web מהירות, נקיות ורספונסיביות. בואו נהפוך את הרעיון שלכם לאתר חי.",
@@ -544,6 +686,14 @@ const I18N = {
     "prj.w.t": "אתר חתונה", "prj.w.d": "אתר אירוע אינטראקטיבי לזוג — עם קיר ברכות לאורחים וספירה לאחור ליום הגדול.",
     "prj.g.t": "GymFlow — ניהול מועדון כושר", "prj.g.d": "מערכת לניהול חברי מועדון כושר: מנויים, שיעורים ולוח זמנים. (תיאור לדוגמה — ניתן לעריכה)",
     "prj.v.t": "פלטפורמת גיוס וניהול", "prj.v.d": "פלטפורמה לחיבור בין מועמדים למשרות וניהול תהליך הגיוס. (תיאור לדוגמה — ניתן לעריכה)",
+    "tst.eyebrow": "המלצות", "tst.title": "מה לקוחות אומרים",
+    "tst.lead": "כמה מילים מאנשים שעבדתי איתם. (תוכן לדוגמה — החליפי בהמלצות אמיתיות.)",
+    "tst.1.q": '"בשי הקשיבה בדיוק למה שרצינו ובנתה לנו אתר שנראה מדהים ועובד מהר. תקשורת נעימה לכל אורך הדרך."',
+    "tst.1.n": "דנה ל.", "tst.1.r": "בעלת עסק", "tst.1.i": "ד",
+    "tst.2.q": '"קיבלנו אתר חנות מקצועי בזמן קצר, בדיוק לפי התקציב. ממליצים בחום על העבודה איתה."',
+    "tst.2.n": "מאיר כ.", "tst.2.r": "מנהל חנות אונליין", "tst.2.i": "מ",
+    "tst.3.q": '"מקצועית, אחראית וזמינה. האתר החדש שלנו מביא הרבה יותר פניות מבעבר. תודה!"',
+    "tst.3.n": "שירה ב.", "tst.3.r": "מטפלת ויועצת", "tst.3.i": "ש",
     "abt.eyebrow": "אודות", "abt.title": "קצת עליי",
     "abt.p1": "אני מפתחת אתרים שאוהבת להפוך רעיונות לפתרונות דיגיטליים אמיתיים. מתמחה בבניית ממשקים נקיים, מהירים ונוחים — מאתרי תדמית פשוטים ועד מערכות web מורכבות.",
     "abt.p2": "אני מאמינה בקוד נקי, בתקשורת ברורה עם הלקוח, ובמסירת פרויקט שגם נראה טוב וגם עובד מצוין. (טקסט לדוגמה — ניתן לעריכה.)",
@@ -562,7 +712,7 @@ const I18N = {
   },
   en: {
     "brand": "Bashy Yacob",
-    "nav.services": "Services", "nav.projects": "Projects", "nav.about": "About", "nav.skills": "Skills", "nav.contact": "Contact",
+    "nav.services": "Services", "nav.projects": "Projects", "nav.testimonials": "Reviews", "nav.about": "About", "nav.skills": "Skills", "nav.contact": "Contact",
     "hero.eyebrow": "Full-Stack Developer & Web Builder",
     "hero.title": 'Building websites <span class="hl">that get results</span>',
     "hero.sub": "Hi, I'm Bashy — a web developer. I build fast, clean and responsive landing pages, online stores and web systems. Let's turn your idea into a live website.",
@@ -586,6 +736,14 @@ const I18N = {
     "prj.w.t": "Wedding Website", "prj.w.d": "An interactive event site for a couple — with a guest wishes wall and a countdown to the big day.",
     "prj.g.t": "GymFlow — Fitness Club Management", "prj.g.d": "A system for managing gym members: subscriptions, classes and scheduling. (Sample text — editable)",
     "prj.v.t": "Recruitment & Management Platform", "prj.v.d": "A platform connecting candidates with positions and managing the hiring process. (Sample text — editable)",
+    "tst.eyebrow": "Testimonials", "tst.title": "What clients say",
+    "tst.lead": "A few words from people I've worked with. (Sample content — replace with real testimonials.)",
+    "tst.1.q": '"Bashy listened to exactly what we wanted and built us a site that looks amazing and loads fast. A pleasure to work with throughout."',
+    "tst.1.n": "Dana L.", "tst.1.r": "Business owner", "tst.1.i": "D",
+    "tst.2.q": '"We got a professional store site in a short time, right on budget. Highly recommend working with her."',
+    "tst.2.n": "Meir C.", "tst.2.r": "Online store manager", "tst.2.i": "M",
+    "tst.3.q": '"Professional, reliable and responsive. Our new site brings far more inquiries than before. Thank you!"',
+    "tst.3.n": "Shira B.", "tst.3.r": "Therapist & consultant", "tst.3.i": "S",
     "abt.eyebrow": "About", "abt.title": "A bit about me",
     "abt.p1": "I'm a web developer who loves turning ideas into real digital solutions. I specialize in clean, fast and intuitive interfaces — from simple landing pages to complex web systems.",
     "abt.p2": "I believe in clean code, clear communication with the client, and delivering a project that both looks great and works perfectly. (Sample text — editable.)",
@@ -674,9 +832,40 @@ function submitForm(e) {
   return false;
 }
 
+/* ---------- theme (light / dark) ---------- */
+let currentTheme = localStorage.getItem("theme") || "light";
+function applyTheme(theme) {
+  if (theme === "dark") document.documentElement.setAttribute("data-theme", "dark");
+  else document.documentElement.removeAttribute("data-theme");
+  const use = document.querySelector("#themeBtn use");
+  if (use) use.setAttribute("href", theme === "dark" ? "#i-sun" : "#i-moon");
+  currentTheme = theme;
+  localStorage.setItem("theme", theme);
+}
+function toggleTheme() { applyTheme(currentTheme === "dark" ? "light" : "dark"); }
+
+/* ---------- scroll reveal ---------- */
+function initReveal() {
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const targets = document.querySelectorAll(".card, .quote-card, .tl-item, .hero-card");
+  const io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+  targets.forEach(function (el) {
+    const sib = Array.prototype.indexOf.call(el.parentElement.children, el);
+    el.style.transitionDelay = Math.min(sib, 4) * 0.07 + "s";
+    el.classList.add("reveal");
+    io.observe(el);
+  });
+}
+
 /* ---------- init ---------- */
 document.getElementById("year").textContent = new Date().getFullYear();
+applyTheme(currentTheme);
 applyLang(currentLang);
+initReveal();
 </script>
 </body>
 </html>
