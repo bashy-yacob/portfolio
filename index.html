@@ -10,183 +10,208 @@
   אתר פורטפוליו — קובץ יחיד, עצמאי. כל התוכן והעיצוב כאן.
   לעריכת תוכן: חפשי את האובייקט I18N למטה (סביב אמצע הקובץ).
   כל מחרוזת קיימת בעברית (he) ובאנגלית (en).
+  אייקונים: ספריית SVG בראש ה-<body> (חפשי "icon sprite").
   ============================================================
 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500;600;700;800&family=Assistant:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #0f1020;
-    --bg-soft: #171930;
-    --card: #1c1f3a;
-    --card-2: #232649;
-    --text: #eef0ff;
-    --muted: #a8adcf;
-    --brand: #7c5cff;
-    --brand-2: #00d4a8;
-    --accent: #ff7eb6;
-    --ring: rgba(124, 92, 255, .35);
-    --radius: 18px;
-    --shadow: 0 14px 40px rgba(0,0,0,.35);
-    --maxw: 1100px;
+    --bg: #f6f4ef;          /* warm paper */
+    --surface: #fffefb;     /* cards */
+    --surface-2: #f1eee7;
+    --ink: #211f1c;         /* near-black, warm */
+    --muted: #76716a;
+    --line: #e7e2d8;        /* hairline borders */
+    --accent: #b0512e;      /* terracotta */
+    --accent-2: #97431f;    /* darker hover */
+    --accent-tint: rgba(176,81,46,.09);
+    --radius: 16px;
+    --shadow: 0 18px 40px rgba(33,31,28,.07);
+    --maxw: 1080px;
     --dirsign: -1;
+    --serif: "Frank Ruhl Libre", Georgia, "Times New Roman", serif;
+    --sans: "Assistant", system-ui, -apple-system, "Segoe UI", "Noto Sans Hebrew", sans-serif;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
   body {
-    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans Hebrew", sans-serif;
-    background: radial-gradient(1200px 600px at 80% -10%, rgba(124,92,255,.20), transparent 60%),
-                radial-gradient(900px 500px at 0% 10%, rgba(0,212,168,.12), transparent 55%),
-                var(--bg);
-    color: var(--text);
-    line-height: 1.65;
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.7;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
   }
   a { color: inherit; text-decoration: none; }
   img { max-width: 100%; display: block; }
-  .wrap { width: 100%; max-width: var(--maxw); margin-inline: auto; padding-inline: 20px; }
-  section { padding: 72px 0; }
-  .eyebrow { color: var(--brand-2); font-weight: 700; letter-spacing: .08em; text-transform: uppercase; font-size: .8rem; }
-  h2.title { font-size: clamp(1.6rem, 4vw, 2.4rem); margin: 8px 0 6px; line-height: 1.15; }
-  .lead { color: var(--muted); max-width: 620px; }
-  .grid { display: grid; gap: 20px; }
+  .wrap { width: 100%; max-width: var(--maxw); margin-inline: auto; padding-inline: 22px; }
+  section { padding: 88px 0; border-top: 1px solid var(--line); }
+  section:first-of-type { border-top: none; }
+
+  .icon { width: 24px; height: 24px; fill: none; stroke: currentColor;
+    stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; display: block; }
+
+  .eyebrow { color: var(--accent); font-weight: 700; letter-spacing: .14em;
+    text-transform: uppercase; font-size: .76rem; }
+  h2.title { font-family: var(--serif); font-weight: 700;
+    font-size: clamp(1.7rem, 4vw, 2.5rem); margin: 12px 0 8px; line-height: 1.18; letter-spacing: -.01em; }
+  .lead { color: var(--muted); max-width: 600px; }
+  .grid { display: grid; gap: 22px; }
 
   /* ---------- NAV ---------- */
   header.nav {
     position: sticky; top: 0; z-index: 50;
     backdrop-filter: blur(10px);
-    background: rgba(15,16,32,.72);
-    border-bottom: 1px solid rgba(255,255,255,.06);
+    background: rgba(246,244,239,.82);
+    border-bottom: 1px solid var(--line);
   }
-  .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 0; }
-  .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.05rem; }
-  .brand .dot { width: 32px; height: 32px; border-radius: 10px;
-    background: linear-gradient(135deg, var(--brand), var(--accent)); display: grid; place-items: center; font-weight: 900; color: #fff; }
-  .nav-links { display: flex; gap: 18px; align-items: center; }
-  .nav-links a { color: var(--muted); font-weight: 600; font-size: .95rem; }
-  .nav-links a:hover { color: var(--text); }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 16px 0; }
+  .brand { display: flex; align-items: center; gap: 11px; font-weight: 700; font-size: 1.05rem; font-family: var(--serif); }
+  .brand .dot { width: 34px; height: 34px; border-radius: 10px; background: var(--accent);
+    display: grid; place-items: center; font-weight: 700; color: #fff; font-size: 1rem; }
+  .nav-links { display: flex; gap: 24px; align-items: center; }
+  .nav-links a { color: var(--muted); font-weight: 600; font-size: .95rem; transition: color .2s; }
+  .nav-links a:hover { color: var(--ink); }
   .lang-btn {
-    border: 1px solid rgba(255,255,255,.18); background: transparent; color: var(--text);
-    padding: 8px 14px; border-radius: 999px; font-weight: 700; cursor: pointer; font-size: .9rem;
-    transition: background .2s, border-color .2s;
+    border: 1px solid var(--line); background: var(--surface); color: var(--ink);
+    padding: 8px 15px; border-radius: 999px; font-weight: 700; cursor: pointer; font-size: .85rem;
+    font-family: var(--sans); transition: border-color .2s, color .2s;
   }
-  .lang-btn:hover { background: rgba(124,92,255,.18); border-color: var(--brand); }
-  .menu-toggle { display: none; background: none; border: none; color: var(--text); font-size: 1.6rem; cursor: pointer; }
+  .lang-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .menu-toggle { display: none; background: none; border: none; color: var(--ink); cursor: pointer; padding: 4px; }
 
   /* ---------- BUTTONS ---------- */
   .btn {
-    display: inline-flex; align-items: center; gap: 8px; cursor: pointer;
-    padding: 12px 22px; border-radius: 999px; font-weight: 700; font-size: .98rem;
-    border: 1px solid transparent; transition: transform .15s, box-shadow .2s, background .2s;
+    display: inline-flex; align-items: center; gap: 9px; cursor: pointer;
+    padding: 13px 24px; border-radius: 999px; font-weight: 700; font-size: .96rem;
+    font-family: var(--sans); border: 1px solid transparent;
+    transition: transform .15s, box-shadow .2s, background .2s, border-color .2s, color .2s;
   }
+  .btn .icon { width: 18px; height: 18px; }
   .btn:hover { transform: translateY(-2px); }
-  .btn-primary { background: linear-gradient(135deg, var(--brand), var(--accent)); color: #fff; box-shadow: 0 10px 28px var(--ring); }
-  .btn-ghost { background: transparent; border-color: rgba(255,255,255,.2); color: var(--text); }
-  .btn-ghost:hover { border-color: var(--brand); background: rgba(124,92,255,.12); }
-  .btn-sm { padding: 8px 16px; font-size: .88rem; }
+  .btn-primary { background: var(--accent); color: #fff; box-shadow: 0 12px 26px rgba(176,81,46,.22); }
+  .btn-primary:hover { background: var(--accent-2); }
+  .btn-ghost { background: transparent; border-color: var(--line); color: var(--ink); }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+  .btn-sm { padding: 9px 17px; font-size: .87rem; }
 
   /* ---------- HERO ---------- */
-  .hero { padding-top: 64px; }
-  .hero-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 40px; align-items: center; }
-  .hero h1 { font-size: clamp(2rem, 6vw, 3.4rem); line-height: 1.08; letter-spacing: -.01em; }
-  .hero h1 .hl { background: linear-gradient(135deg, var(--brand-2), var(--brand)); -webkit-background-clip: text; background-clip: text; color: transparent; }
-  .hero p.sub { margin-top: 18px; font-size: 1.12rem; color: var(--muted); max-width: 540px; }
-  .hero-cta { display: flex; gap: 14px; margin-top: 28px; flex-wrap: wrap; }
-  .hero-badges { display: flex; gap: 10px; margin-top: 26px; flex-wrap: wrap; }
-  .chip { border: 1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.03); padding: 7px 14px; border-radius: 999px; font-size: .85rem; color: var(--muted); }
+  .hero { padding-top: 80px; }
+  .hero-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 52px; align-items: center; }
+  .hero h1 { font-family: var(--serif); font-weight: 800; font-size: clamp(2.2rem, 6vw, 3.6rem);
+    line-height: 1.1; letter-spacing: -.015em; }
+  .hero h1 .hl { color: var(--accent); position: relative; white-space: nowrap; }
+  .hero p.sub { margin-top: 20px; font-size: 1.1rem; color: var(--muted); max-width: 520px; }
+  .hero-cta { display: flex; gap: 14px; margin-top: 30px; flex-wrap: wrap; }
+  .hero-badges { display: flex; gap: 10px; margin-top: 30px; flex-wrap: wrap; }
+  .chip { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--line);
+    background: var(--surface); padding: 8px 15px; border-radius: 999px; font-size: .85rem; color: var(--muted); font-weight: 600; }
+  .chip .icon { width: 16px; height: 16px; color: var(--accent); }
   .hero-card {
-    background: linear-gradient(160deg, var(--card), var(--bg-soft));
-    border: 1px solid rgba(255,255,255,.08); border-radius: 24px; padding: 26px; box-shadow: var(--shadow);
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: 22px; padding: 30px; box-shadow: var(--shadow); position: relative; overflow: hidden;
   }
-  .hero-card .avatar { width: 92px; height: 92px; border-radius: 20px;
-    background: linear-gradient(135deg, var(--brand), var(--accent)); display: grid; place-items: center; font-size: 2.4rem; font-weight: 900; color: #fff; }
-  .hero-card h3 { margin-top: 16px; font-size: 1.3rem; }
-  .hero-card .role { color: var(--brand-2); font-weight: 700; }
-  .stat-row { display: flex; gap: 22px; margin-top: 20px; }
-  .stat .n { font-size: 1.5rem; font-weight: 800; }
-  .stat .l { font-size: .82rem; color: var(--muted); }
+  .hero-card::before { content: ""; position: absolute; top: 0; inset-inline-start: 0; width: 100%; height: 4px; background: var(--accent); }
+  .hero-card .avatar { width: 88px; height: 88px; border-radius: 20px; background: var(--accent-tint);
+    border: 1px solid var(--line); display: grid; place-items: center; font-size: 2.2rem; font-weight: 700;
+    color: var(--accent); font-family: var(--serif); }
+  .hero-card h3 { margin-top: 18px; font-size: 1.35rem; font-family: var(--serif); font-weight: 700; }
+  .hero-card .role { color: var(--accent); font-weight: 700; font-size: .92rem; }
+  .stat-row { display: flex; gap: 26px; margin-top: 24px; padding-top: 22px; border-top: 1px solid var(--line); }
+  .stat .n { font-size: 1.6rem; font-weight: 700; font-family: var(--serif); }
+  .stat .l { font-size: .8rem; color: var(--muted); }
 
   /* ---------- CARDS ---------- */
   .card {
-    background: linear-gradient(160deg, var(--card), var(--bg-soft));
-    border: 1px solid rgba(255,255,255,.08); border-radius: var(--radius); padding: 26px;
-    box-shadow: var(--shadow); transition: transform .18s, border-color .2s;
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 30px; transition: transform .18s, border-color .2s, box-shadow .2s;
   }
-  .card:hover { transform: translateY(-4px); border-color: var(--ring); }
-  .card .ic { width: 52px; height: 52px; border-radius: 14px; display: grid; place-items: center;
-    background: rgba(124,92,255,.14); color: var(--brand-2); margin-bottom: 14px; }
-  .card h3 { font-size: 1.25rem; margin-bottom: 6px; }
-  .card .price { color: var(--brand-2); font-weight: 800; font-size: 1rem; margin: 4px 0 12px; }
-  .feat { list-style: none; display: grid; gap: 8px; margin-top: 12px; }
-  .feat li { color: var(--muted); display: flex; gap: 10px; align-items: flex-start; font-size: .95rem; }
-  .feat li::before { content: "✓"; color: var(--brand-2); font-weight: 900; }
+  .card:hover { transform: translateY(-4px); border-color: rgba(176,81,46,.4); box-shadow: var(--shadow); }
+  .ic { width: 50px; height: 50px; border-radius: 14px; display: grid; place-items: center;
+    background: var(--accent-tint); color: var(--accent); margin-bottom: 18px; }
+  .ic .icon { width: 24px; height: 24px; }
+  .card h3 { font-size: 1.2rem; margin-bottom: 6px; font-family: var(--serif); font-weight: 700; }
+  .card .price { color: var(--accent); font-weight: 700; font-size: 1rem; margin: 2px 0 12px; }
+  .feat { list-style: none; display: grid; gap: 9px; margin-top: 14px; }
+  .feat li { color: var(--muted); display: flex; gap: 10px; align-items: flex-start; font-size: .94rem; }
+  .feat li .icon { width: 17px; height: 17px; color: var(--accent); flex: none; margin-top: 4px; stroke-width: 2.2; }
 
   .cards-3 { grid-template-columns: repeat(3, 1fr); }
   .cards-2 { grid-template-columns: repeat(2, 1fr); }
 
   /* ---------- PROJECT ---------- */
-  .proj .thumb { height: 150px; border-radius: 14px; margin-bottom: 16px; display: grid; place-items: center; font-size: 2.6rem;
-    background: linear-gradient(135deg, rgba(124,92,255,.35), rgba(255,126,182,.25)); }
-  .proj .thumb.g2 { background: linear-gradient(135deg, rgba(0,212,168,.30), rgba(124,92,255,.25)); }
-  .proj .thumb.g3 { background: linear-gradient(135deg, rgba(255,126,182,.30), rgba(0,212,168,.22)); }
-  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
-  .tag { font-size: .78rem; padding: 5px 11px; border-radius: 999px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); color: var(--muted); }
-  .proj-links { display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
-  .live-badge { display: inline-flex; align-items: center; gap: 6px; font-size: .78rem; color: var(--brand-2); font-weight: 700; }
-  .live-badge .pulse { width: 8px; height: 8px; border-radius: 50%; background: var(--brand-2); box-shadow: 0 0 0 0 rgba(0,212,168,.6); animation: pulse 1.8s infinite; }
-  @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(0,212,168,.55); } 70% { box-shadow: 0 0 0 10px rgba(0,212,168,0); } 100% { box-shadow: 0 0 0 0 rgba(0,212,168,0); } }
+  .proj .live-badge { display: inline-flex; align-items: center; gap: 7px; font-size: .76rem;
+    color: var(--accent); font-weight: 700; margin-bottom: 12px; text-transform: uppercase; letter-spacing: .08em; }
+  .proj .live-badge .pulse { width: 8px; height: 8px; border-radius: 50%; background: var(--accent);
+    box-shadow: 0 0 0 0 rgba(176,81,46,.5); animation: pulse 1.8s infinite; }
+  @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(176,81,46,.45); } 70% { box-shadow: 0 0 0 9px rgba(176,81,46,0); } 100% { box-shadow: 0 0 0 0 rgba(176,81,46,0); } }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0; }
+  .tag { font-size: .77rem; padding: 5px 12px; border-radius: 999px; background: var(--surface-2);
+    border: 1px solid var(--line); color: var(--muted); font-weight: 600; }
+  .proj-links { display: flex; gap: 10px; margin-top: 16px; flex-wrap: wrap; }
 
   /* ---------- ABOUT / EXP / EDU ---------- */
-  .two-col { grid-template-columns: 1fr 1fr; }
-  .timeline { position: relative; padding-inline-start: 22px; }
-  .timeline::before { content: ""; position: absolute; inset-inline-start: 4px; top: 4px; bottom: 4px; width: 2px; background: rgba(255,255,255,.12); }
-  .tl-item { position: relative; padding-bottom: 22px; }
-  .tl-item::before { content: ""; position: absolute; inset-inline-start: -22px; top: 6px; width: 11px; height: 11px; border-radius: 50%;
-    background: var(--brand); box-shadow: 0 0 0 4px rgba(124,92,255,.18); }
-  .tl-item h4 { font-size: 1.05rem; }
-  .tl-item .when { color: var(--brand-2); font-size: .85rem; font-weight: 700; }
-  .tl-item p { color: var(--muted); font-size: .94rem; margin-top: 4px; }
+  .two-col { grid-template-columns: 1fr 1fr; gap: 48px; }
+  .timeline { position: relative; padding-inline-start: 24px; }
+  .timeline::before { content: ""; position: absolute; inset-inline-start: 4px; top: 6px; bottom: 6px; width: 2px; background: var(--line); }
+  .tl-item { position: relative; padding-bottom: 26px; }
+  .tl-item:last-child { padding-bottom: 0; }
+  .tl-item::before { content: ""; position: absolute; inset-inline-start: -24px; top: 7px; width: 11px; height: 11px;
+    border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px var(--accent-tint); }
+  .tl-item h4 { font-size: 1.05rem; font-family: var(--serif); font-weight: 700; }
+  .tl-item .when { color: var(--accent); font-size: .82rem; font-weight: 700; }
+  .tl-item p { color: var(--muted); font-size: .93rem; margin-top: 4px; }
 
   .skill-wrap { display: flex; flex-wrap: wrap; gap: 10px; }
-  .skill { padding: 9px 16px; border-radius: 12px; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.1); font-weight: 600; font-size: .92rem; }
-  .skill:hover { border-color: var(--brand); color: var(--brand-2); }
+  .skill { padding: 9px 16px; border-radius: 10px; background: var(--surface); border: 1px solid var(--line);
+    font-weight: 600; font-size: .9rem; transition: border-color .2s, color .2s; }
+  .skill:hover { border-color: var(--accent); color: var(--accent); }
 
   /* ---------- CONTACT ---------- */
-  .contact-grid { grid-template-columns: 1fr 1fr; align-items: start; }
-  .contact-list { display: grid; gap: 14px; margin-top: 18px; }
-  .contact-list a { display: flex; align-items: center; gap: 14px; padding: 14px 16px; border-radius: 14px;
-    background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.1); transition: border-color .2s, transform .15s; }
-  .contact-list a:hover { border-color: var(--brand); transform: translateX(calc(var(--dirsign) * 4px)); }
-  .contact-list .ic { width: 42px; height: 42px; flex: none; border-radius: 12px; display: grid; place-items: center; background: rgba(124,92,255,.16); }
-  .contact-list .meta b { display: block; }
+  .contact-grid { grid-template-columns: 1fr 1fr; align-items: start; gap: 40px; }
+  .contact-list { display: grid; gap: 12px; margin-top: 4px; }
+  .contact-list a { display: flex; align-items: center; gap: 14px; padding: 15px 17px; border-radius: 14px;
+    background: var(--surface); border: 1px solid var(--line); transition: border-color .2s, transform .15s; }
+  .contact-list a:hover { border-color: var(--accent); transform: translateX(calc(var(--dirsign) * 4px)); }
+  .contact-list .ic { width: 42px; height: 42px; flex: none; margin: 0; border-radius: 12px;
+    display: grid; place-items: center; background: var(--accent-tint); color: var(--accent); }
+  .contact-list .ic .icon { width: 20px; height: 20px; }
+  .contact-list .meta b { display: block; font-weight: 700; }
   .contact-list .meta span { color: var(--muted); font-size: .88rem; }
-  form .field { margin-bottom: 14px; }
-  form label { display: block; font-size: .88rem; margin-bottom: 6px; color: var(--muted); }
+  form .field { margin-bottom: 15px; }
+  form label { display: block; font-size: .86rem; margin-bottom: 6px; color: var(--muted); font-weight: 600; }
   form input, form textarea {
-    width: 100%; padding: 13px 15px; border-radius: 12px; background: rgba(255,255,255,.05);
-    border: 1px solid rgba(255,255,255,.14); color: var(--text); font-family: inherit; font-size: 1rem;
+    width: 100%; padding: 13px 15px; border-radius: 12px; background: var(--bg);
+    border: 1px solid var(--line); color: var(--ink); font-family: inherit; font-size: 1rem;
   }
-  form input:focus, form textarea:focus { outline: none; border-color: var(--brand); box-shadow: 0 0 0 3px var(--ring); }
+  form input:focus, form textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-tint); }
   form textarea { resize: vertical; min-height: 120px; }
   .form-note { font-size: .82rem; color: var(--muted); margin-top: 8px; }
   .form-status { margin-top: 12px; font-weight: 700; min-height: 22px; }
 
   /* ---------- FOOTER ---------- */
-  footer { border-top: 1px solid rgba(255,255,255,.08); padding: 30px 0; color: var(--muted); }
+  footer { border-top: 1px solid var(--line); padding: 34px 0; color: var(--muted); }
   .foot-inner { display: flex; justify-content: space-between; align-items: center; gap: 14px; flex-wrap: wrap; }
-  .foot-soc { display: flex; gap: 12px; }
-  .foot-soc a { width: 40px; height: 40px; display: grid; place-items: center; border-radius: 12px; border: 1px solid rgba(255,255,255,.12); }
-  .foot-soc a:hover { border-color: var(--brand); color: var(--brand-2); }
+  .foot-soc { display: flex; gap: 10px; }
+  .foot-soc a { width: 40px; height: 40px; display: grid; place-items: center; border-radius: 12px;
+    border: 1px solid var(--line); background: var(--surface); transition: border-color .2s, color .2s; }
+  .foot-soc a:hover { border-color: var(--accent); color: var(--accent); }
+  .foot-soc .icon { width: 19px; height: 19px; }
 
   /* ---------- RESPONSIVE ---------- */
   @media (max-width: 860px) {
-    .hero-grid { grid-template-columns: 1fr; }
+    section { padding: 64px 0; }
+    .hero-grid { grid-template-columns: 1fr; gap: 38px; }
     .cards-3, .cards-2, .two-col, .contact-grid { grid-template-columns: 1fr; }
+    .two-col { gap: 44px; }
     .nav-links { position: fixed; inset: 0 0 0 auto; width: min(78vw, 320px); flex-direction: column;
-      align-items: flex-start; justify-content: flex-start; gap: 6px; padding: 80px 26px;
-      background: var(--bg-soft); border-inline-start: 1px solid rgba(255,255,255,.1);
+      align-items: flex-start; justify-content: flex-start; gap: 6px; padding: 84px 28px;
+      background: var(--surface); border-inline-start: 1px solid var(--line);
       transform: translateX(120%); transition: transform .28s ease; }
-    html[dir="rtl"] .nav-links { inset: 0 auto 0 0; border-inline-start: none; border-inline-end: 1px solid rgba(255,255,255,.1); transform: translateX(-120%); }
+    html[dir="rtl"] .nav-links { inset: 0 auto 0 0; border-inline-start: none; border-inline-end: 1px solid var(--line); transform: translateX(-120%); }
     .nav-links.open { transform: translateX(0); }
     .nav-links a { font-size: 1.1rem; padding: 8px 0; }
     .menu-toggle { display: block; z-index: 60; }
@@ -194,6 +219,28 @@
 </style>
 </head>
 <body>
+
+<!-- ===================== icon sprite (SVG) ===================== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+  <symbol id="i-bolt" viewBox="0 0 24 24"><polygon points="13 2 4 14 11 14 10 22 20 10 13 10 13 2"/></symbol>
+  <symbol id="i-mobile" viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="2.5"/><line x1="11" y1="18" x2="13" y2="18"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5"/><line x1="2.5" y1="12" x2="21.5" y2="12"/><path d="M12 2.5a14 14 0 0 1 3.8 9.5 14 14 0 0 1-3.8 9.5 14 14 0 0 1-3.8-9.5A14 14 0 0 1 12 2.5z"/></symbol>
+  <symbol id="i-layout" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2.5"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></symbol>
+  <symbol id="i-bag" viewBox="0 0 24 24"><path d="M6 2 3.5 6.5V20a2 2 0 0 0 2 2h13a2 2 0 0 0 2-2V6.5L18 2z"/><line x1="3.5" y1="6.5" x2="20.5" y2="6.5"/><path d="M16 10a4 4 0 0 1-8 0"/></symbol>
+  <symbol id="i-tool" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M20.8 5.6a5.4 5.4 0 0 0-7.7 0L12 6.7l-1.1-1.1a5.4 5.4 0 1 0-7.7 7.7L12 22l8.8-8.7a5.4 5.4 0 0 0 0-7.7z"/></symbol>
+  <symbol id="i-dumbbell" viewBox="0 0 24 24"><line x1="6.5" y1="7" x2="6.5" y2="17"/><line x1="17.5" y1="7" x2="17.5" y2="17"/><line x1="3.5" y1="9.5" x2="3.5" y2="14.5"/><line x1="20.5" y1="9.5" x2="20.5" y2="14.5"/><line x1="6.5" y1="12" x2="17.5" y2="12"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="m3 6 9 6.5L21 6"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2 4.2 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.9.7 2.8a2 2 0 0 1-.4 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.9.6 2.8.7A2 2 0 0 1 22 16.9z"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8z"/></symbol>
+  <symbol id="i-github" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.9a3.4 3.4 0 0 0-.9-2.6c3.1-.3 6.4-1.5 6.4-7A5.4 5.4 0 0 0 20 4.8 5.1 5.1 0 0 0 19.9 1S18.7.6 16 2.5a13.4 13.4 0 0 0-7 0C6.3.6 5.1 1 5.1 1A5.1 5.1 0 0 0 5 4.8a5.4 5.4 0 0 0-1.5 3.8c0 5.4 3.3 6.6 6.4 7A3.4 3.4 0 0 0 9 18.1V22"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="8 7 17 7 17 16"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></symbol>
+  <symbol id="i-code" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></symbol>
+</defs></svg>
 
 <!-- ===================== NAV ===================== -->
 <header class="nav">
@@ -208,7 +255,7 @@
     </nav>
     <div style="display:flex;gap:10px;align-items:center;">
       <button class="lang-btn" id="langBtn" onclick="toggleLang()">EN</button>
-      <button class="menu-toggle" id="menuToggle" aria-label="menu" onclick="toggleMenu()">☰</button>
+      <button class="menu-toggle" id="menuToggle" aria-label="menu" onclick="toggleMenu()"><svg class="icon"><use href="#i-menu"/></svg></button>
     </div>
   </div>
 </header>
@@ -221,13 +268,13 @@
       <h1 data-i18n="hero.title">בונה אתרים <span class="hl">שמביאים תוצאות</span></h1>
       <p class="sub" data-i18n="hero.sub">היי, אני בשי — מפתחת אתרים. אני בונה אתרי תדמית, חנויות ומערכות web מהירות, נקיות ורספונסיביות. בואו נהפוך את הרעיון שלכם לאתר חי.</p>
       <div class="hero-cta">
-        <a href="#contact" class="btn btn-primary" data-i18n="hero.cta1">בואו נדבר 💬</a>
-        <a href="#projects" class="btn btn-ghost" data-i18n="hero.cta2">לעבודות שלי</a>
+        <a href="#contact" class="btn btn-primary"><span data-i18n="hero.cta1">בואו נדבר</span><svg class="icon"><use href="#i-chat"/></svg></a>
+        <a href="#projects" class="btn btn-ghost"><span data-i18n="hero.cta2">לעבודות שלי</span></a>
       </div>
       <div class="hero-badges">
-        <span class="chip" data-i18n="hero.b1">⚡ אתרים מהירים</span>
-        <span class="chip" data-i18n="hero.b2">📱 מותאם מובייל</span>
-        <span class="chip" data-i18n="hero.b3">🌐 דו-לשוני</span>
+        <span class="chip"><svg class="icon"><use href="#i-bolt"/></svg><span data-i18n="hero.b1">אתרים מהירים</span></span>
+        <span class="chip"><svg class="icon"><use href="#i-mobile"/></svg><span data-i18n="hero.b2">מותאם מובייל</span></span>
+        <span class="chip"><svg class="icon"><use href="#i-globe"/></svg><span data-i18n="hero.b3">דו-לשוני</span></span>
       </div>
     </div>
     <aside class="hero-card">
@@ -250,45 +297,45 @@
     <span class="eyebrow" data-i18n="srv.eyebrow">שירותים</span>
     <h2 class="title" data-i18n="srv.title">חבילות שמתאימות לעסק שלך</h2>
     <p class="lead" data-i18n="srv.lead">בחרי את החבילה שמתאימה לך — או דברי איתי לפתרון מותאם אישית.</p>
-    <div class="grid cards-3" style="margin-top:34px;">
+    <div class="grid cards-3" style="margin-top:36px;">
       <div class="card">
-        <div class="ic">🎨</div>
+        <div class="ic"><svg class="icon"><use href="#i-layout"/></svg></div>
         <h3 data-i18n="srv.1.t">אתר תדמית</h3>
         <div class="price" data-i18n="srv.1.p">החל מ-₪1,500 *</div>
         <p class="lead" style="font-size:.92rem;" data-i18n="srv.1.d">נוכחות דיגיטלית מקצועית שמייצרת אמון ולקוחות.</p>
         <ul class="feat">
-          <li data-i18n="srv.1.f1">עיצוב מותאם אישית</li>
-          <li data-i18n="srv.1.f2">רספונסיבי לכל מסך</li>
-          <li data-i18n="srv.1.f3">טופס יצירת קשר</li>
-          <li data-i18n="srv.1.f4">חיבור לרשתות חברתיות</li>
+          <li><svg class="icon"><use href="#i-check"/></svg><span data-i18n="srv.1.f1">עיצוב מותאם אישית</span></li>
+          <li><svg class="icon"><use href="#i-check"/></svg><span data-i18n="srv.1.f2">רספונסיבי לכל מסך</span></li>
+          <li><svg class="icon"><use href="#i-check"/></svg><span data-i18n="srv.1.f3">טופס יצירת קשר</span></li>
+          <li><svg class="icon"><use href="#i-check"/></svg><span data-i18n="srv.1.f4">חיבור לרשתות חברתיות</span></li>
         </ul>
       </div>
       <div class="card">
-        <div class="ic">🛒</div>
+        <div class="ic"><svg class="icon"><use href="#i-bag"/></svg></div>
         <h3 data-i18n="srv.2.t">אתר מכירות / חנות</h3>
         <div class="price" data-i18n="srv.2.p">החל מ-₪3,500 *</div>
         <p class="lead" style="font-size:.92rem;" data-i18n="srv.2.d">חנות אונליין שמוכרת — עם סל קנייה ותשלום מאובטח.</p>
         <ul class="feat">
-          <li data-i18n="srv.2.f1">קטלוג מוצרים וניהול</li>
-          <li data-i18n="srv.2.f2">סל קנייה ותשלום</li>
-          <li data-i18n="srv.2.f3">ניהול הזמנות</li>
-          <li data-i18n="srv.2.f4">מותאם לקידום (SEO)</li>
+          <li><svg class="icon"><use href="#i-check"/></svg><span data-i18n="srv.2.f1">קטלוג מוצרים וניהול</span></li>
+          <li><svg class="icon"><use href="#i-check"/></svg><span data-i18n="srv.2.f2">סל קנייה ותשלום</span></li>
+          <li><svg class="icon"><use href="#i-check"/></svg><span data-i18n="srv.2.f3">ניהול הזמנות</span></li>
+          <li><svg class="icon"><use href="#i-check"/></svg><span data-i18n="srv.2.f4">מותאם לקידום (SEO)</span></li>
         </ul>
       </div>
       <div class="card">
-        <div class="ic">🛠️</div>
+        <div class="ic"><svg class="icon"><use href="#i-tool"/></svg></div>
         <h3 data-i18n="srv.3.t">תחזוקת אתרים</h3>
         <div class="price" data-i18n="srv.3.p">חבילה חודשית *</div>
         <p class="lead" style="font-size:.92rem;" data-i18n="srv.3.d">שקט נפשי — האתר שלך מעודכן, מאובטח וזמין תמיד.</p>
         <ul class="feat">
-          <li data-i18n="srv.3.f1">עדכונים שוטפים</li>
-          <li data-i18n="srv.3.f2">גיבויים ואבטחה</li>
-          <li data-i18n="srv.3.f3">תיקוני תקלות</li>
-          <li data-i18n="srv.3.f4">תמיכה שוטפת</li>
+          <li><svg class="icon"><use href="#i-check"/></svg><span data-i18n="srv.3.f1">עדכונים שוטפים</span></li>
+          <li><svg class="icon"><use href="#i-check"/></svg><span data-i18n="srv.3.f2">גיבויים ואבטחה</span></li>
+          <li><svg class="icon"><use href="#i-check"/></svg><span data-i18n="srv.3.f3">תיקוני תקלות</span></li>
+          <li><svg class="icon"><use href="#i-check"/></svg><span data-i18n="srv.3.f4">תמיכה שוטפת</span></li>
         </ul>
       </div>
     </div>
-    <p class="form-note" style="margin-top:16px;" data-i18n="srv.note">* המחירים הם להמחשה בלבד וניתנים לעריכה. מחיר סופי לפי היקף הפרויקט.</p>
+    <p class="form-note" style="margin-top:18px;" data-i18n="srv.note">* המחירים הם להמחשה בלבד וניתנים לעריכה. מחיר סופי לפי היקף הפרויקט.</p>
   </div>
 </section>
 
@@ -298,11 +345,11 @@
     <span class="eyebrow" data-i18n="prj.eyebrow">תיק עבודות</span>
     <h2 class="title" data-i18n="prj.title">פרויקטים נבחרים</h2>
     <p class="lead" data-i18n="prj.lead">כמה מהדברים שבניתי — כולל אתר חי שאפשר ללחוץ ולראות עכשיו.</p>
-    <div class="grid cards-3" style="margin-top:34px;">
+    <div class="grid cards-3" style="margin-top:36px;">
 
       <!-- Wedding (LIVE) -->
       <div class="card proj">
-        <div class="thumb">💍</div>
+        <div class="ic"><svg class="icon"><use href="#i-heart"/></svg></div>
         <span class="live-badge"><span class="pulse"></span><span data-i18n="prj.live">אתר חי</span></span>
         <h3 data-i18n="prj.w.t">אתר חתונה</h3>
         <p class="lead" style="font-size:.92rem;" data-i18n="prj.w.d">אתר אירוע אינטראקטיבי לזוג — עם קיר ברכות לאורחים וספירה לאחור ליום הגדול.</p>
@@ -310,34 +357,34 @@
           <span class="tag">React</span><span class="tag">Next.js</span><span class="tag">TypeScript</span>
         </div>
         <div class="proj-links">
-          <a href="https://weddingweb-nu.vercel.app/" target="_blank" rel="noopener" class="btn btn-primary btn-sm" data-i18n="prj.viewlive">לצפייה באתר החי ↗</a>
-          <a href="https://github.com/bashy-yacob/wedding" target="_blank" rel="noopener" class="btn btn-ghost btn-sm" data-i18n="prj.code">קוד ב-GitHub</a>
+          <a href="https://weddingweb-nu.vercel.app/" target="_blank" rel="noopener" class="btn btn-primary btn-sm"><span data-i18n="prj.viewlive">לצפייה באתר החי</span><svg class="icon"><use href="#i-arrow"/></svg></a>
+          <a href="https://github.com/bashy-yacob/wedding" target="_blank" rel="noopener" class="btn btn-ghost btn-sm"><svg class="icon"><use href="#i-github"/></svg><span data-i18n="prj.code">קוד ב-GitHub</span></a>
         </div>
       </div>
 
       <!-- GymFlow -->
       <div class="card proj">
-        <div class="thumb g2">🏋️</div>
+        <div class="ic"><svg class="icon"><use href="#i-dumbbell"/></svg></div>
         <h3 data-i18n="prj.g.t">GymFlow — ניהול מועדון כושר</h3>
         <p class="lead" style="font-size:.92rem;" data-i18n="prj.g.d">מערכת לניהול חברי מועדון כושר: מנויים, שיעורים ולוח זמנים. (תיאור לדוגמה — ניתן לעריכה)</p>
         <div class="tags">
           <span class="tag">JavaScript</span><span class="tag">React</span><span class="tag">Node.js</span>
         </div>
         <div class="proj-links">
-          <a href="https://github.com/bashy-yacob/Fitness-center" target="_blank" rel="noopener" class="btn btn-ghost btn-sm" data-i18n="prj.code">קוד ב-GitHub</a>
+          <a href="https://github.com/bashy-yacob/Fitness-center" target="_blank" rel="noopener" class="btn btn-ghost btn-sm"><svg class="icon"><use href="#i-github"/></svg><span data-i18n="prj.code">קוד ב-GitHub</span></a>
         </div>
       </div>
 
       <!-- Volunteer / Recruitment -->
       <div class="card proj">
-        <div class="thumb g3">🤝</div>
+        <div class="ic"><svg class="icon"><use href="#i-users"/></svg></div>
         <h3 data-i18n="prj.v.t">פלטפורמת גיוס וניהול</h3>
         <p class="lead" style="font-size:.92rem;" data-i18n="prj.v.d">פלטפורמה לחיבור בין מועמדים למשרות וניהול תהליך הגיוס. (תיאור לדוגמה — ניתן לעריכה)</p>
         <div class="tags">
           <span class="tag">TypeScript</span><span class="tag">React</span><span class="tag">Full-Stack</span>
         </div>
         <div class="proj-links">
-          <a href="https://github.com/bashy-yacob/der-shtele" target="_blank" rel="noopener" class="btn btn-ghost btn-sm" data-i18n="prj.code">קוד ב-GitHub</a>
+          <a href="https://github.com/bashy-yacob/der-shtele" target="_blank" rel="noopener" class="btn btn-ghost btn-sm"><svg class="icon"><use href="#i-github"/></svg><span data-i18n="prj.code">קוד ב-GitHub</span></a>
         </div>
       </div>
 
@@ -357,7 +404,7 @@
     <div>
       <span class="eyebrow" data-i18n="exp.eyebrow">ניסיון</span>
       <h2 class="title" data-i18n="exp.title">ניסיון מקצועי</h2>
-      <div class="timeline" style="margin-top:18px;">
+      <div class="timeline" style="margin-top:20px;">
         <div class="tl-item">
           <h4 data-i18n="exp.1.t">מפתחת אתרים עצמאית (Freelance)</h4>
           <div class="when" data-i18n="exp.1.w">היום</div>
@@ -379,7 +426,7 @@
     <div>
       <span class="eyebrow" data-i18n="skl.eyebrow">כישורים</span>
       <h2 class="title" data-i18n="skl.title">טכנולוגיות וכלים</h2>
-      <div class="skill-wrap" style="margin-top:18px;">
+      <div class="skill-wrap" style="margin-top:20px;">
         <span class="skill">React</span><span class="skill">TypeScript</span><span class="skill">JavaScript</span>
         <span class="skill">Next.js</span><span class="skill">Node.js</span><span class="skill">HTML5</span>
         <span class="skill">CSS3</span><span class="skill">Git &amp; GitHub</span><span class="skill">C#</span>
@@ -389,7 +436,7 @@
     <div>
       <span class="eyebrow" data-i18n="edu.eyebrow">השכלה</span>
       <h2 class="title" data-i18n="edu.title">השכלה והכשרה</h2>
-      <div class="timeline" style="margin-top:18px;">
+      <div class="timeline" style="margin-top:20px;">
         <div class="tl-item">
           <h4 data-i18n="edu.1.t">לימודי הנדסת תוכנה / פיתוח</h4>
           <div class="when" data-i18n="edu.1.w">שנת לימוד</div>
@@ -411,23 +458,23 @@
     <span class="eyebrow" data-i18n="con.eyebrow">צור קשר</span>
     <h2 class="title" data-i18n="con.title">בואו נבנה משהו ביחד</h2>
     <p class="lead" data-i18n="con.lead">יש לך פרויקט בראש? מלאי את הטופס או דברי איתי ישירות — אשמח לשמוע.</p>
-    <div class="grid contact-grid" style="margin-top:30px;">
+    <div class="grid contact-grid" style="margin-top:32px;">
       <div>
         <div class="contact-list">
           <a href="mailto:bashy3309@gmail.com">
-            <span class="ic">✉️</span>
+            <span class="ic"><svg class="icon"><use href="#i-mail"/></svg></span>
             <span class="meta"><b data-i18n="con.email">אימייל</b><span>bashy3309@gmail.com</span></span>
           </a>
           <a href="tel:+972548473309">
-            <span class="ic">📞</span>
+            <span class="ic"><svg class="icon"><use href="#i-phone"/></svg></span>
             <span class="meta"><b data-i18n="con.phone">טלפון</b><span dir="ltr">054-8473309</span></span>
           </a>
           <a href="https://wa.me/972548473309" target="_blank" rel="noopener">
-            <span class="ic">💬</span>
+            <span class="ic"><svg class="icon"><use href="#i-chat"/></svg></span>
             <span class="meta"><b data-i18n="con.wa">וואטסאפ</b><span data-i18n="con.wa.s">שלחי הודעה מהירה</span></span>
           </a>
           <a href="https://github.com/bashy-yacob" target="_blank" rel="noopener">
-            <span class="ic">🐙</span>
+            <span class="ic"><svg class="icon"><use href="#i-github"/></svg></span>
             <span class="meta"><b data-i18n="con.gh">GitHub</b><span>github.com/bashy-yacob</span></span>
           </a>
         </div>
@@ -446,7 +493,7 @@
             <label for="cf-msg" data-i18n="con.f.msg">הודעה</label>
             <textarea id="cf-msg" name="message" required></textarea>
           </div>
-          <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;" data-i18n="con.f.send">שליחה 🚀</button>
+          <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;"><span data-i18n="con.f.send">שליחה</span><svg class="icon"><use href="#i-send"/></svg></button>
           <div class="form-status" id="formStatus"></div>
           <p class="form-note" data-i18n="con.f.note">הטופס יפתח את תוכנת המייל שלך עד שיוגדר מפתח Web3Forms (ראי הערה בקוד).</p>
         </form>
@@ -460,9 +507,9 @@
   <div class="wrap foot-inner">
     <div>© <span id="year"></span> <span data-i18n="brand">בשי יעקב</span> · <span data-i18n="foot.tag">מפתחת אתרים</span></div>
     <div class="foot-soc">
-      <a href="mailto:bashy3309@gmail.com" aria-label="email">✉️</a>
-      <a href="https://wa.me/972548473309" target="_blank" rel="noopener" aria-label="whatsapp">💬</a>
-      <a href="https://github.com/bashy-yacob" target="_blank" rel="noopener" aria-label="github">🐙</a>
+      <a href="mailto:bashy3309@gmail.com" aria-label="email"><svg class="icon"><use href="#i-mail"/></svg></a>
+      <a href="https://wa.me/972548473309" target="_blank" rel="noopener" aria-label="whatsapp"><svg class="icon"><use href="#i-chat"/></svg></a>
+      <a href="https://github.com/bashy-yacob" target="_blank" rel="noopener" aria-label="github"><svg class="icon"><use href="#i-github"/></svg></a>
     </div>
   </div>
 </footer>
@@ -478,8 +525,8 @@ const I18N = {
     "hero.eyebrow": "מפתחת Full-Stack & בניית אתרים",
     "hero.title": 'בונה אתרים <span class="hl">שמביאים תוצאות</span>',
     "hero.sub": "היי, אני בשי — מפתחת אתרים. אני בונה אתרי תדמית, חנויות ומערכות web מהירות, נקיות ורספונסיביות. בואו נהפוך את הרעיון שלכם לאתר חי.",
-    "hero.cta1": "בואו נדבר 💬", "hero.cta2": "לעבודות שלי",
-    "hero.b1": "⚡ אתרים מהירים", "hero.b2": "📱 מותאם מובייל", "hero.b3": "🌐 דו-לשוני",
+    "hero.cta1": "בואו נדבר", "hero.cta2": "לעבודות שלי",
+    "hero.b1": "אתרים מהירים", "hero.b2": "מותאם מובייל", "hero.b3": "דו-לשוני",
     "hero.card.name": "בשי יעקב", "hero.card.role": "Web Developer · Full-Stack",
     "hero.card.desc": "React · TypeScript · Node.js · בניית אתרים מקצה לקצה.",
     "hero.stat1n": "10+", "hero.stat1l": "פרויקטים", "hero.stat2n": "2", "hero.stat2l": "שפות", "hero.stat3n": "100%", "hero.stat3l": "מסירות",
@@ -494,7 +541,7 @@ const I18N = {
     "srv.note": "* המחירים הם להמחשה בלבד וניתנים לעריכה. מחיר סופי לפי היקף הפרויקט.",
     "prj.eyebrow": "תיק עבודות", "prj.title": "פרויקטים נבחרים",
     "prj.lead": "כמה מהדברים שבניתי — כולל אתר חי שאפשר ללחוץ ולראות עכשיו.",
-    "prj.live": "אתר חי", "prj.viewlive": "לצפייה באתר החי ↗", "prj.code": "קוד ב-GitHub",
+    "prj.live": "אתר חי", "prj.viewlive": "לצפייה באתר החי", "prj.code": "קוד ב-GitHub",
     "prj.w.t": "אתר חתונה", "prj.w.d": "אתר אירוע אינטראקטיבי לזוג — עם קיר ברכות לאורחים וספירה לאחור ליום הגדול.",
     "prj.g.t": "GymFlow — ניהול מועדון כושר", "prj.g.d": "מערכת לניהול חברי מועדון כושר: מנויים, שיעורים ולוח זמנים. (תיאור לדוגמה — ניתן לעריכה)",
     "prj.v.t": "פלטפורמת גיוס וניהול", "prj.v.d": "פלטפורמה לחיבור בין מועמדים למשרות וניהול תהליך הגיוס. (תיאור לדוגמה — ניתן לעריכה)",
@@ -511,7 +558,7 @@ const I18N = {
     "con.eyebrow": "צור קשר", "con.title": "בואו נבנה משהו ביחד",
     "con.lead": "יש לך פרויקט בראש? מלאי את הטופס או דברי איתי ישירות — אשמח לשמוע.",
     "con.email": "אימייל", "con.phone": "טלפון", "con.wa": "וואטסאפ", "con.wa.s": "שלחי הודעה מהירה", "con.gh": "GitHub",
-    "con.f.name": "שם מלא", "con.f.email": "אימייל", "con.f.msg": "הודעה", "con.f.send": "שליחה 🚀",
+    "con.f.name": "שם מלא", "con.f.email": "אימייל", "con.f.msg": "הודעה", "con.f.send": "שליחה",
     "con.f.note": "הטופס יפתח את תוכנת המייל שלך עד שיוגדר מפתח Web3Forms (ראי הערה בקוד).",
     "foot.tag": "מפתחת אתרים"
   },
@@ -521,8 +568,8 @@ const I18N = {
     "hero.eyebrow": "Full-Stack Developer & Web Builder",
     "hero.title": 'Building websites <span class="hl">that get results</span>',
     "hero.sub": "Hi, I'm Bashy — a web developer. I build fast, clean and responsive landing pages, online stores and web systems. Let's turn your idea into a live website.",
-    "hero.cta1": "Let's talk 💬", "hero.cta2": "View my work",
-    "hero.b1": "⚡ Fast websites", "hero.b2": "📱 Mobile-friendly", "hero.b3": "🌐 Bilingual",
+    "hero.cta1": "Let's talk", "hero.cta2": "View my work",
+    "hero.b1": "Fast websites", "hero.b2": "Mobile-friendly", "hero.b3": "Bilingual",
     "hero.card.name": "Bashy Yacob", "hero.card.role": "Web Developer · Full-Stack",
     "hero.card.desc": "React · TypeScript · Node.js · end-to-end web development.",
     "hero.stat1n": "10+", "hero.stat1l": "Projects", "hero.stat2n": "2", "hero.stat2l": "Languages", "hero.stat3n": "100%", "hero.stat3l": "Commitment",
@@ -537,7 +584,7 @@ const I18N = {
     "srv.note": "* Prices are illustrative and editable. Final price depends on project scope.",
     "prj.eyebrow": "Portfolio", "prj.title": "Selected Projects",
     "prj.lead": "A few things I've built — including a live site you can open right now.",
-    "prj.live": "Live", "prj.viewlive": "View live site ↗", "prj.code": "Code on GitHub",
+    "prj.live": "Live", "prj.viewlive": "View live site", "prj.code": "Code on GitHub",
     "prj.w.t": "Wedding Website", "prj.w.d": "An interactive event site for a couple — with a guest wishes wall and a countdown to the big day.",
     "prj.g.t": "GymFlow — Fitness Club Management", "prj.g.d": "A system for managing gym members: subscriptions, classes and scheduling. (Sample text — editable)",
     "prj.v.t": "Recruitment & Management Platform", "prj.v.d": "A platform connecting candidates with positions and managing the hiring process. (Sample text — editable)",
@@ -554,7 +601,7 @@ const I18N = {
     "con.eyebrow": "Contact", "con.title": "Let's build something together",
     "con.lead": "Got a project in mind? Fill the form or reach out directly — I'd love to hear about it.",
     "con.email": "Email", "con.phone": "Phone", "con.wa": "WhatsApp", "con.wa.s": "Send a quick message", "con.gh": "GitHub",
-    "con.f.name": "Full name", "con.f.email": "Email", "con.f.msg": "Message", "con.f.send": "Send 🚀",
+    "con.f.name": "Full name", "con.f.email": "Email", "con.f.msg": "Message", "con.f.send": "Send",
     "con.f.note": "The form opens your email app until a Web3Forms key is set (see note in code).",
     "foot.tag": "Web Developer"
   }
@@ -605,7 +652,7 @@ function submitForm(e) {
     const body = encodeURIComponent((t ? "שם: " : "Name: ") + name + "\n" +
       (t ? "אימייל: " : "Email: ") + email + "\n\n" + message);
     window.location.href = "mailto:bashy3309@gmail.com?subject=" + subj + "&body=" + body;
-    status.style.color = "var(--brand-2)";
+    status.style.color = "var(--accent)";
     status.textContent = t ? "נפתחת תוכנת המייל שלך…" : "Opening your email app…";
     return false;
   }
@@ -619,12 +666,12 @@ function submitForm(e) {
   }).then(function (r) { return r.json(); })
     .then(function (data) {
       if (data.success) {
-        status.style.color = "var(--brand-2)";
-        status.textContent = t ? "תודה! ההודעה נשלחה ✅" : "Thanks! Your message was sent ✅";
+        status.style.color = "var(--accent)";
+        status.textContent = t ? "תודה! ההודעה נשלחה" : "Thanks! Your message was sent";
         f.reset();
       } else { throw new Error("failed"); }
     }).catch(function () {
-      status.style.color = "var(--accent)";
+      status.style.color = "var(--accent-2)";
       status.textContent = t ? "שגיאה בשליחה — נסי שוב או שלחי מייל ישירות." : "Sending failed — please try again or email directly.";
     });
   return false;
