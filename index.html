@@ -170,6 +170,7 @@
   .hero-card .avatar { width: 88px; height: 88px; border-radius: 20px; background: var(--accent-tint);
     border: 1px solid var(--line); display: grid; place-items: center; font-size: 2.2rem; font-weight: 700;
     color: var(--accent); font-family: var(--serif); }
+  .hero-card .avatar .icon { width: 46px; height: 46px; }
   .hero-card h3 { margin-top: 18px; font-size: 1.35rem; font-family: var(--serif); font-weight: 700; }
   .hero-card .role { color: var(--accent); font-weight: 700; font-size: .92rem; }
   .stat-row { display: flex; gap: 26px; margin-top: 24px; padding-top: 22px; border-top: 1px solid var(--line); }
@@ -274,19 +275,19 @@
   .reveal { opacity: 0; transform: translateY(22px); transition: opacity .6s ease, transform .6s ease; }
   .reveal.in { opacity: 1; transform: none; }
 
-  /* ---------- floating whatsapp ---------- */
-  .wa-float { position: fixed; bottom: 22px; inset-inline-end: 22px; z-index: 60;
+  /* ---------- floating call button ---------- */
+  .float-btn { position: fixed; bottom: 22px; inset-inline-end: 22px; z-index: 60;
     width: 56px; height: 56px; border-radius: 50%; background: var(--accent); color: #fff;
     display: grid; place-items: center; box-shadow: 0 12px 28px rgba(176,81,46,.4);
-    transition: transform .2s, background .2s; animation: wa-in .4s ease .8s both; }
-  .wa-float:hover { transform: scale(1.08); background: var(--accent-2); }
-  .wa-float .icon { width: 26px; height: 26px; }
-  @keyframes wa-in { from { transform: scale(0); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+    transition: transform .2s, background .2s; animation: float-in .4s ease .8s both; }
+  .float-btn:hover { transform: scale(1.08); background: var(--accent-2); }
+  .float-btn .icon { width: 26px; height: 26px; }
+  @keyframes float-in { from { transform: scale(0); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 
   /* ---------- respect reduced motion ---------- */
   @media (prefers-reduced-motion: reduce) {
     .reveal { opacity: 1 !important; transform: none !important; transition: none; }
-    .wa-float { animation: none; }
+    .float-btn { animation: none; }
     .btn:hover, .card:hover, .quote-card:hover, .proj:hover .ic, .icon-btn:hover { transform: none; }
     html, body { transition: none; }
     html { scroll-behavior: auto; }
@@ -389,7 +390,7 @@
       </div>
     </div>
     <aside class="hero-card">
-      <div class="avatar">B</div>
+      <div class="avatar"><svg class="icon"><use href="#i-code"/></svg></div>
       <h3 data-i18n="hero.card.name">באשי קליין</h3>
       <div class="role" data-i18n="hero.card.role">Web Developer · Full-Stack</div>
       <p class="lead" style="margin-top:10px;font-size:.95rem;" data-i18n="hero.card.desc">React · TypeScript · Node.js · בניית אתרים מקצה לקצה.</p>
@@ -611,10 +612,6 @@
             <span class="ic"><svg class="icon"><use href="#i-phone"/></svg></span>
             <span class="meta"><b data-i18n="con.phone">טלפון</b><span dir="ltr">054-8473309</span></span>
           </a>
-          <a href="https://wa.me/972548473309" target="_blank" rel="noopener">
-            <span class="ic"><svg class="icon"><use href="#i-chat"/></svg></span>
-            <span class="meta"><b data-i18n="con.wa">וואטסאפ</b><span data-i18n="con.wa.s">שלחי הודעה מהירה</span></span>
-          </a>
           <a href="https://github.com/bashy-yacob" target="_blank" rel="noopener">
             <span class="ic"><svg class="icon"><use href="#i-github"/></svg></span>
             <span class="meta"><b data-i18n="con.gh">GitHub</b><span>github.com/bashy-yacob</span></span>
@@ -643,8 +640,8 @@
   </div>
 </section>
 
-<!-- ===================== FLOATING WHATSAPP ===================== -->
-<a class="wa-float" href="https://wa.me/972548473309" target="_blank" rel="noopener" aria-label="WhatsApp"><svg class="icon"><use href="#i-chat"/></svg></a>
+<!-- ===================== FLOATING CALL ===================== -->
+<a class="float-btn" href="tel:+972548473309" aria-label="התקשרי אליי"><svg class="icon"><use href="#i-phone"/></svg></a>
 
 <!-- ===================== FOOTER ===================== -->
 <footer>
@@ -652,7 +649,7 @@
     <div>© <span id="year"></span> <span data-i18n="brand">באשי קליין</span> · <span data-i18n="foot.tag">מפתחת אתרים</span></div>
     <div class="foot-soc">
       <a href="mailto:bashy3309@gmail.com" aria-label="email"><svg class="icon"><use href="#i-mail"/></svg></a>
-      <a href="https://wa.me/972548473309" target="_blank" rel="noopener" aria-label="whatsapp"><svg class="icon"><use href="#i-chat"/></svg></a>
+      <a href="tel:+972548473309" aria-label="phone"><svg class="icon"><use href="#i-phone"/></svg></a>
       <a href="https://github.com/bashy-yacob" target="_blank" rel="noopener" aria-label="github"><svg class="icon"><use href="#i-github"/></svg></a>
     </div>
   </div>
@@ -709,7 +706,7 @@ const I18N = {
     "edu.2.t": "קורסים והשתלמויות", "edu.2.w": "מתעדכן", "edu.2.d": "למידה מתמדת של טכנולוגיות web מודרניות וכלים חדשים.",
     "con.eyebrow": "צור קשר", "con.title": "בואו נבנה משהו ביחד",
     "con.lead": "יש לך פרויקט בראש? מלאי את הטופס או דברי איתי ישירות — אשמח לשמוע.",
-    "con.email": "אימייל", "con.phone": "טלפון", "con.wa": "וואטסאפ", "con.wa.s": "שלחי הודעה מהירה", "con.gh": "GitHub",
+    "con.email": "אימייל", "con.phone": "טלפון", "con.gh": "GitHub",
     "con.f.name": "שם מלא", "con.f.email": "אימייל", "con.f.msg": "הודעה", "con.f.send": "שליחה",
     "foot.tag": "מפתחת אתרים"
   },
@@ -759,7 +756,7 @@ const I18N = {
     "edu.2.t": "Courses & Training", "edu.2.w": "Ongoing", "edu.2.d": "Continuous learning of modern web technologies and new tools.",
     "con.eyebrow": "Contact", "con.title": "Let's build something together",
     "con.lead": "Got a project in mind? Fill the form or reach out directly — I'd love to hear about it.",
-    "con.email": "Email", "con.phone": "Phone", "con.wa": "WhatsApp", "con.wa.s": "Send a quick message", "con.gh": "GitHub",
+    "con.email": "Email", "con.phone": "Phone", "con.gh": "GitHub",
     "con.f.name": "Full name", "con.f.email": "Email", "con.f.msg": "Message", "con.f.send": "Send",
     "foot.tag": "Web Developer"
   }
