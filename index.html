@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>בשי יעקב | מפתחת אתרים ופיתוח Full-Stack</title>
+<meta name="description" content="בשי יעקב — מפתחת אתרים. בניית אתרי תדמית, חנויות ומערכות web. צרי קשר לפרויקט הבא שלך." />
+<!--
+  ============================================================
+  אתר פורטפוליו — קובץ יחיד, עצמאי. כל התוכן והעיצוב כאן.
+  לעריכת תוכן: חפשי את האובייקט I18N למטה (סביב אמצע הקובץ).
+  כל מחרוזת קיימת בעברית (he) ובאנגלית (en).
+  ============================================================
+-->
+<style>
+  :root {
+    --bg: #0f1020;
+    --bg-soft: #171930;
+    --card: #1c1f3a;
+    --card-2: #232649;
+    --text: #eef0ff;
+    --muted: #a8adcf;
+    --brand: #7c5cff;
+    --brand-2: #00d4a8;
+    --accent: #ff7eb6;
+    --ring: rgba(124, 92, 255, .35);
+    --radius: 18px;
+    --shadow: 0 14px 40px rgba(0,0,0,.35);
+    --maxw: 1100px;
+    --dirsign: -1;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans Hebrew", sans-serif;
+    background: radial-gradient(1200px 600px at 80% -10%, rgba(124,92,255,.20), transparent 60%),
+                radial-gradient(900px 500px at 0% 10%, rgba(0,212,168,.12), transparent 55%),
+                var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; display: block; }
+  .wrap { width: 100%; max-width: var(--maxw); margin-inline: auto; padding-inline: 20px; }
+  section { padding: 72px 0; }
+  .eyebrow { color: var(--brand-2); font-weight: 700; letter-spacing: .08em; text-transform: uppercase; font-size: .8rem; }
+  h2.title { font-size: clamp(1.6rem, 4vw, 2.4rem); margin: 8px 0 6px; line-height: 1.15; }
+  .lead { color: var(--muted); max-width: 620px; }
+  .grid { display: grid; gap: 20px; }
+
+  /* ---------- NAV ---------- */
+  header.nav {
+    position: sticky; top: 0; z-index: 50;
+    backdrop-filter: blur(10px);
+    background: rgba(15,16,32,.72);
+    border-bottom: 1px solid rgba(255,255,255,.06);
+  }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 0; }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.05rem; }
+  .brand .dot { width: 32px; height: 32px; border-radius: 10px;
+    background: linear-gradient(135deg, var(--brand), var(--accent)); display: grid; place-items: center; font-weight: 900; color: #fff; }
+  .nav-links { display: flex; gap: 18px; align-items: center; }
+  .nav-links a { color: var(--muted); font-weight: 600; font-size: .95rem; }
+  .nav-links a:hover { color: var(--text); }
+  .lang-btn {
+    border: 1px solid rgba(255,255,255,.18); background: transparent; color: var(--text);
+    padding: 8px 14px; border-radius: 999px; font-weight: 700; cursor: pointer; font-size: .9rem;
+    transition: background .2s, border-color .2s;
+  }
+  .lang-btn:hover { background: rgba(124,92,255,.18); border-color: var(--brand); }
+  .menu-toggle { display: none; background: none; border: none; color: var(--text); font-size: 1.6rem; cursor: pointer; }
+
+  /* ---------- BUTTONS ---------- */
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px; cursor: pointer;
+    padding: 12px 22px; border-radius: 999px; font-weight: 700; font-size: .98rem;
+    border: 1px solid transparent; transition: transform .15s, box-shadow .2s, background .2s;
+  }
+  .btn:hover { transform: translateY(-2px); }
+  .btn-primary { background: linear-gradient(135deg, var(--brand), var(--accent)); color: #fff; box-shadow: 0 10px 28px var(--ring); }
+  .btn-ghost { background: transparent; border-color: rgba(255,255,255,.2); color: var(--text); }
+  .btn-ghost:hover { border-color: var(--brand); background: rgba(124,92,255,.12); }
+  .btn-sm { padding: 8px 16px; font-size: .88rem; }
+
+  /* ---------- HERO ---------- */
+  .hero { padding-top: 64px; }
+  .hero-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 40px; align-items: center; }
+  .hero h1 { font-size: clamp(2rem, 6vw, 3.4rem); line-height: 1.08; letter-spacing: -.01em; }
+  .hero h1 .hl { background: linear-gradient(135deg, var(--brand-2), var(--brand)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .hero p.sub { margin-top: 18px; font-size: 1.12rem; color: var(--muted); max-width: 540px; }
+  .hero-cta { display: flex; gap: 14px; margin-top: 28px; flex-wrap: wrap; }
+  .hero-badges { display: flex; gap: 10px; margin-top: 26px; flex-wrap: wrap; }
+  .chip { border: 1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.03); padding: 7px 14px; border-radius: 999px; font-size: .85rem; color: var(--muted); }
+  .hero-card {
+    background: linear-gradient(160deg, var(--card), var(--bg-soft));
+    border: 1px solid rgba(255,255,255,.08); border-radius: 24px; padding: 26px; box-shadow: var(--shadow);
+  }
+  .hero-card .avatar { width: 92px; height: 92px; border-radius: 20px;
+    background: linear-gradient(135deg, var(--brand), var(--accent)); display: grid; place-items: center; font-size: 2.4rem; font-weight: 900; color: #fff; }
+  .hero-card h3 { margin-top: 16px; font-size: 1.3rem; }
+  .hero-card .role { color: var(--brand-2); font-weight: 700; }
+  .stat-row { display: flex; gap: 22px; margin-top: 20px; }
+  .stat .n { font-size: 1.5rem; font-weight: 800; }
+  .stat .l { font-size: .82rem; color: var(--muted); }
+
+  /* ---------- CARDS ---------- */
+  .card {
+    background: linear-gradient(160deg, var(--card), var(--bg-soft));
+    border: 1px solid rgba(255,255,255,.08); border-radius: var(--radius); padding: 26px;
+    box-shadow: var(--shadow); transition: transform .18s, border-color .2s;
+  }
+  .card:hover { transform: translateY(-4px); border-color: var(--ring); }
+  .card .ic { width: 52px; height: 52px; border-radius: 14px; display: grid; place-items: center;
+    background: rgba(124,92,255,.14); color: var(--brand-2); margin-bottom: 14px; }
+  .card h3 { font-size: 1.25rem; margin-bottom: 6px; }
+  .card .price { color: var(--brand-2); font-weight: 800; font-size: 1rem; margin: 4px 0 12px; }
+  .feat { list-style: none; display: grid; gap: 8px; margin-top: 12px; }
+  .feat li { color: var(--muted); display: flex; gap: 10px; align-items: flex-start; font-size: .95rem; }
+  .feat li::before { content: "✓"; color: var(--brand-2); font-weight: 900; }
+
+  .cards-3 { grid-template-columns: repeat(3, 1fr); }
+  .cards-2 { grid-template-columns: repeat(2, 1fr); }
+
+  /* ---------- PROJECT ---------- */
+  .proj .thumb { height: 150px; border-radius: 14px; margin-bottom: 16px; display: grid; place-items: center; font-size: 2.6rem;
+    background: linear-gradient(135deg, rgba(124,92,255,.35), rgba(255,126,182,.25)); }
+  .proj .thumb.g2 { background: linear-gradient(135deg, rgba(0,212,168,.30), rgba(124,92,255,.25)); }
+  .proj .thumb.g3 { background: linear-gradient(135deg, rgba(255,126,182,.30), rgba(0,212,168,.22)); }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
+  .tag { font-size: .78rem; padding: 5px 11px; border-radius: 999px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); color: var(--muted); }
+  .proj-links { display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
+  .live-badge { display: inline-flex; align-items: center; gap: 6px; font-size: .78rem; color: var(--brand-2); font-weight: 700; }
+  .live-badge .pulse { width: 8px; height: 8px; border-radius: 50%; background: var(--brand-2); box-shadow: 0 0 0 0 rgba(0,212,168,.6); animation: pulse 1.8s infinite; }
+  @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(0,212,168,.55); } 70% { box-shadow: 0 0 0 10px rgba(0,212,168,0); } 100% { box-shadow: 0 0 0 0 rgba(0,212,168,0); } }
+
+  /* ---------- ABOUT / EXP / EDU ---------- */
+  .two-col { grid-template-columns: 1fr 1fr; }
+  .timeline { position: relative; padding-inline-start: 22px; }
+  .timeline::before { content: ""; position: absolute; inset-inline-start: 4px; top: 4px; bottom: 4px; width: 2px; background: rgba(255,255,255,.12); }
+  .tl-item { position: relative; padding-bottom: 22px; }
+  .tl-item::before { content: ""; position: absolute; inset-inline-start: -22px; top: 6px; width: 11px; height: 11px; border-radius: 50%;
+    background: var(--brand); box-shadow: 0 0 0 4px rgba(124,92,255,.18); }
+  .tl-item h4 { font-size: 1.05rem; }
+  .tl-item .when { color: var(--brand-2); font-size: .85rem; font-weight: 700; }
+  .tl-item p { color: var(--muted); font-size: .94rem; margin-top: 4px; }
+
+  .skill-wrap { display: flex; flex-wrap: wrap; gap: 10px; }
+  .skill { padding: 9px 16px; border-radius: 12px; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.1); font-weight: 600; font-size: .92rem; }
+  .skill:hover { border-color: var(--brand); color: var(--brand-2); }
+
+  /* ---------- CONTACT ---------- */
+  .contact-grid { grid-template-columns: 1fr 1fr; align-items: start; }
+  .contact-list { display: grid; gap: 14px; margin-top: 18px; }
+  .contact-list a { display: flex; align-items: center; gap: 14px; padding: 14px 16px; border-radius: 14px;
+    background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.1); transition: border-color .2s, transform .15s; }
+  .contact-list a:hover { border-color: var(--brand); transform: translateX(calc(var(--dirsign) * 4px)); }
+  .contact-list .ic { width: 42px; height: 42px; flex: none; border-radius: 12px; display: grid; place-items: center; background: rgba(124,92,255,.16); }
+  .contact-list .meta b { display: block; }
+  .contact-list .meta span { color: var(--muted); font-size: .88rem; }
+  form .field { margin-bottom: 14px; }
+  form label { display: block; font-size: .88rem; margin-bottom: 6px; color: var(--muted); }
+  form input, form textarea {
+    width: 100%; padding: 13px 15px; border-radius: 12px; background: rgba(255,255,255,.05);
+    border: 1px solid rgba(255,255,255,.14); color: var(--text); font-family: inherit; font-size: 1rem;
+  }
+  form input:focus, form textarea:focus { outline: none; border-color: var(--brand); box-shadow: 0 0 0 3px var(--ring); }
+  form textarea { resize: vertical; min-height: 120px; }
+  .form-note { font-size: .82rem; color: var(--muted); margin-top: 8px; }
+  .form-status { margin-top: 12px; font-weight: 700; min-height: 22px; }
+
+  /* ---------- FOOTER ---------- */
+  footer { border-top: 1px solid rgba(255,255,255,.08); padding: 30px 0; color: var(--muted); }
+  .foot-inner { display: flex; justify-content: space-between; align-items: center; gap: 14px; flex-wrap: wrap; }
+  .foot-soc { display: flex; gap: 12px; }
+  .foot-soc a { width: 40px; height: 40px; display: grid; place-items: center; border-radius: 12px; border: 1px solid rgba(255,255,255,.12); }
+  .foot-soc a:hover { border-color: var(--brand); color: var(--brand-2); }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 860px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .cards-3, .cards-2, .two-col, .contact-grid { grid-template-columns: 1fr; }
+    .nav-links { position: fixed; inset: 0 0 0 auto; width: min(78vw, 320px); flex-direction: column;
+      align-items: flex-start; justify-content: flex-start; gap: 6px; padding: 80px 26px;
+      background: var(--bg-soft); border-inline-start: 1px solid rgba(255,255,255,.1);
+      transform: translateX(120%); transition: transform .28s ease; }
+    html[dir="rtl"] .nav-links { inset: 0 auto 0 0; border-inline-start: none; border-inline-end: 1px solid rgba(255,255,255,.1); transform: translateX(-120%); }
+    .nav-links.open { transform: translateX(0); }
+    .nav-links a { font-size: 1.1rem; padding: 8px 0; }
+    .menu-toggle { display: block; z-index: 60; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===================== NAV ===================== -->
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a href="#hero" class="brand"><span class="dot">B</span><span data-i18n="brand">בשי יעקב</span></a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#services" data-i18n="nav.services">שירותים</a>
+      <a href="#projects" data-i18n="nav.projects">פרויקטים</a>
+      <a href="#about" data-i18n="nav.about">אודות</a>
+      <a href="#skills" data-i18n="nav.skills">כישורים</a>
+      <a href="#contact" data-i18n="nav.contact">צור קשר</a>
+    </nav>
+    <div style="display:flex;gap:10px;align-items:center;">
+      <button class="lang-btn" id="langBtn" onclick="toggleLang()">EN</button>
+      <button class="menu-toggle" id="menuToggle" aria-label="menu" onclick="toggleMenu()">☰</button>
+    </div>
+  </div>
+</header>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero" id="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow" data-i18n="hero.eyebrow">מפתחת Full-Stack &amp; בניית אתרים</span>
+      <h1 data-i18n="hero.title">בונה אתרים <span class="hl">שמביאים תוצאות</span></h1>
+      <p class="sub" data-i18n="hero.sub">היי, אני בשי — מפתחת אתרים. אני בונה אתרי תדמית, חנויות ומערכות web מהירות, נקיות ורספונסיביות. בואו נהפוך את הרעיון שלכם לאתר חי.</p>
+      <div class="hero-cta">
+        <a href="#contact" class="btn btn-primary" data-i18n="hero.cta1">בואו נדבר 💬</a>
+        <a href="#projects" class="btn btn-ghost" data-i18n="hero.cta2">לעבודות שלי</a>
+      </div>
+      <div class="hero-badges">
+        <span class="chip" data-i18n="hero.b1">⚡ אתרים מהירים</span>
+        <span class="chip" data-i18n="hero.b2">📱 מותאם מובייל</span>
+        <span class="chip" data-i18n="hero.b3">🌐 דו-לשוני</span>
+      </div>
+    </div>
+    <aside class="hero-card">
+      <div class="avatar">B</div>
+      <h3 data-i18n="hero.card.name">בשי יעקב</h3>
+      <div class="role" data-i18n="hero.card.role">Web Developer · Full-Stack</div>
+      <p class="lead" style="margin-top:10px;font-size:.95rem;" data-i18n="hero.card.desc">React · TypeScript · Node.js · בניית אתרים מקצה לקצה.</p>
+      <div class="stat-row">
+        <div class="stat"><div class="n" data-i18n="hero.stat1n">10+</div><div class="l" data-i18n="hero.stat1l">פרויקטים</div></div>
+        <div class="stat"><div class="n" data-i18n="hero.stat2n">2</div><div class="l" data-i18n="hero.stat2l">שפות</div></div>
+        <div class="stat"><div class="n" data-i18n="hero.stat3n">100%</div><div class="l" data-i18n="hero.stat3l">מסירות</div></div>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- ===================== SERVICES ===================== -->
+<section id="services">
+  <div class="wrap">
+    <span class="eyebrow" data-i18n="srv.eyebrow">שירותים</span>
+    <h2 class="title" data-i18n="srv.title">חבילות שמתאימות לעסק שלך</h2>
+    <p class="lead" data-i18n="srv.lead">בחרי את החבילה שמתאימה לך — או דברי איתי לפתרון מותאם אישית.</p>
+    <div class="grid cards-3" style="margin-top:34px;">
+      <div class="card">
+        <div class="ic">🎨</div>
+        <h3 data-i18n="srv.1.t">אתר תדמית</h3>
+        <div class="price" data-i18n="srv.1.p">החל מ-₪1,500 *</div>
+        <p class="lead" style="font-size:.92rem;" data-i18n="srv.1.d">נוכחות דיגיטלית מקצועית שמייצרת אמון ולקוחות.</p>
+        <ul class="feat">
+          <li data-i18n="srv.1.f1">עיצוב מותאם אישית</li>
+          <li data-i18n="srv.1.f2">רספונסיבי לכל מסך</li>
+          <li data-i18n="srv.1.f3">טופס יצירת קשר</li>
+          <li data-i18n="srv.1.f4">חיבור לרשתות חברתיות</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="ic">🛒</div>
+        <h3 data-i18n="srv.2.t">אתר מכירות / חנות</h3>
+        <div class="price" data-i18n="srv.2.p">החל מ-₪3,500 *</div>
+        <p class="lead" style="font-size:.92rem;" data-i18n="srv.2.d">חנות אונליין שמוכרת — עם סל קנייה ותשלום מאובטח.</p>
+        <ul class="feat">
+          <li data-i18n="srv.2.f1">קטלוג מוצרים וניהול</li>
+          <li data-i18n="srv.2.f2">סל קנייה ותשלום</li>
+          <li data-i18n="srv.2.f3">ניהול הזמנות</li>
+          <li data-i18n="srv.2.f4">מותאם לקידום (SEO)</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="ic">🛠️</div>
+        <h3 data-i18n="srv.3.t">תחזוקת אתרים</h3>
+        <div class="price" data-i18n="srv.3.p">חבילה חודשית *</div>
+        <p class="lead" style="font-size:.92rem;" data-i18n="srv.3.d">שקט נפשי — האתר שלך מעודכן, מאובטח וזמין תמיד.</p>
+        <ul class="feat">
+          <li data-i18n="srv.3.f1">עדכונים שוטפים</li>
+          <li data-i18n="srv.3.f2">גיבויים ואבטחה</li>
+          <li data-i18n="srv.3.f3">תיקוני תקלות</li>
+          <li data-i18n="srv.3.f4">תמיכה שוטפת</li>
+        </ul>
+      </div>
+    </div>
+    <p class="form-note" style="margin-top:16px;" data-i18n="srv.note">* המחירים הם להמחשה בלבד וניתנים לעריכה. מחיר סופי לפי היקף הפרויקט.</p>
+  </div>
+</section>
+
+<!-- ===================== PROJECTS ===================== -->
+<section id="projects">
+  <div class="wrap">
+    <span class="eyebrow" data-i18n="prj.eyebrow">תיק עבודות</span>
+    <h2 class="title" data-i18n="prj.title">פרויקטים נבחרים</h2>
+    <p class="lead" data-i18n="prj.lead">כמה מהדברים שבניתי — כולל אתר חי שאפשר ללחוץ ולראות עכשיו.</p>
+    <div class="grid cards-3" style="margin-top:34px;">
+
+      <!-- Wedding (LIVE) -->
+      <div class="card proj">
+        <div class="thumb">💍</div>
+        <span class="live-badge"><span class="pulse"></span><span data-i18n="prj.live">אתר חי</span></span>
+        <h3 data-i18n="prj.w.t">אתר חתונה</h3>
+        <p class="lead" style="font-size:.92rem;" data-i18n="prj.w.d">אתר אירוע אינטראקטיבי לזוג — עם קיר ברכות לאורחים וספירה לאחור ליום הגדול.</p>
+        <div class="tags">
+          <span class="tag">React</span><span class="tag">Next.js</span><span class="tag">TypeScript</span>
+        </div>
+        <div class="proj-links">
+          <a href="https://weddingweb-nu.vercel.app/" target="_blank" rel="noopener" class="btn btn-primary btn-sm" data-i18n="prj.viewlive">לצפייה באתר החי ↗</a>
+          <a href="https://github.com/bashy-yacob/wedding" target="_blank" rel="noopener" class="btn btn-ghost btn-sm" data-i18n="prj.code">קוד ב-GitHub</a>
+        </div>
+      </div>
+
+      <!-- GymFlow -->
+      <div class="card proj">
+        <div class="thumb g2">🏋️</div>
+        <h3 data-i18n="prj.g.t">GymFlow — ניהול מועדון כושר</h3>
+        <p class="lead" style="font-size:.92rem;" data-i18n="prj.g.d">מערכת לניהול חברי מועדון כושר: מנויים, שיעורים ולוח זמנים. (תיאור לדוגמה — ניתן לעריכה)</p>
+        <div class="tags">
+          <span class="tag">JavaScript</span><span class="tag">React</span><span class="tag">Node.js</span>
+        </div>
+        <div class="proj-links">
+          <a href="https://github.com/bashy-yacob/Fitness-center" target="_blank" rel="noopener" class="btn btn-ghost btn-sm" data-i18n="prj.code">קוד ב-GitHub</a>
+        </div>
+      </div>
+
+      <!-- Volunteer / Recruitment -->
+      <div class="card proj">
+        <div class="thumb g3">🤝</div>
+        <h3 data-i18n="prj.v.t">פלטפורמת גיוס וניהול</h3>
+        <p class="lead" style="font-size:.92rem;" data-i18n="prj.v.d">פלטפורמה לחיבור בין מועמדים למשרות וניהול תהליך הגיוס. (תיאור לדוגמה — ניתן לעריכה)</p>
+        <div class="tags">
+          <span class="tag">TypeScript</span><span class="tag">React</span><span class="tag">Full-Stack</span>
+        </div>
+        <div class="proj-links">
+          <a href="https://github.com/bashy-yacob/der-shtele" target="_blank" rel="noopener" class="btn btn-ghost btn-sm" data-i18n="prj.code">קוד ב-GitHub</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ABOUT + EXPERIENCE ===================== -->
+<section id="about">
+  <div class="wrap grid two-col">
+    <div>
+      <span class="eyebrow" data-i18n="abt.eyebrow">אודות</span>
+      <h2 class="title" data-i18n="abt.title">קצת עליי</h2>
+      <p class="lead" data-i18n="abt.p1">אני מפתחת אתרים שאוהבת להפוך רעיונות לפתרונות דיגיטליים אמיתיים. מתמחה בבניית ממשקים נקיים, מהירים ונוחים — מאתרי תדמית פשוטים ועד מערכות web מורכבות.</p>
+      <p class="lead" style="margin-top:14px;" data-i18n="abt.p2">אני מאמינה בקוד נקי, בתקשורת ברורה עם הלקוח, ובמסירת פרויקט שגם נראה טוב וגם עובד מצוין. (טקסט לדוגמה — ניתן לעריכה.)</p>
+    </div>
+    <div>
+      <span class="eyebrow" data-i18n="exp.eyebrow">ניסיון</span>
+      <h2 class="title" data-i18n="exp.title">ניסיון מקצועי</h2>
+      <div class="timeline" style="margin-top:18px;">
+        <div class="tl-item">
+          <h4 data-i18n="exp.1.t">מפתחת אתרים עצמאית (Freelance)</h4>
+          <div class="when" data-i18n="exp.1.w">היום</div>
+          <p data-i18n="exp.1.d">בניית אתרים ומערכות web ללקוחות — מאפיון ועיצוב ועד פיתוח והעלאה לאוויר.</p>
+        </div>
+        <div class="tl-item">
+          <h4 data-i18n="exp.2.t">פרויקטי פיתוח Full-Stack</h4>
+          <div class="when" data-i18n="exp.2.w">לאחרונה</div>
+          <p data-i18n="exp.2.d">פיתוח אפליקציות עם React, TypeScript ו-Node.js. (פרטים לדוגמה — ניתן לעריכה.)</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SKILLS + EDUCATION ===================== -->
+<section id="skills">
+  <div class="wrap grid two-col">
+    <div>
+      <span class="eyebrow" data-i18n="skl.eyebrow">כישורים</span>
+      <h2 class="title" data-i18n="skl.title">טכנולוגיות וכלים</h2>
+      <div class="skill-wrap" style="margin-top:18px;">
+        <span class="skill">React</span><span class="skill">TypeScript</span><span class="skill">JavaScript</span>
+        <span class="skill">Next.js</span><span class="skill">Node.js</span><span class="skill">HTML5</span>
+        <span class="skill">CSS3</span><span class="skill">Git &amp; GitHub</span><span class="skill">C#</span>
+        <span class="skill">.NET</span><span class="skill">REST API</span><span class="skill">Responsive Design</span>
+      </div>
+    </div>
+    <div>
+      <span class="eyebrow" data-i18n="edu.eyebrow">השכלה</span>
+      <h2 class="title" data-i18n="edu.title">השכלה והכשרה</h2>
+      <div class="timeline" style="margin-top:18px;">
+        <div class="tl-item">
+          <h4 data-i18n="edu.1.t">לימודי הנדסת תוכנה / פיתוח</h4>
+          <div class="when" data-i18n="edu.1.w">שנת לימוד</div>
+          <p data-i18n="edu.1.d">בסיס תיאורטי ומעשי בפיתוח תוכנה, אלגוריתמים ובניית מערכות. (פרטים לדוגמה — ניתן לעריכה.)</p>
+        </div>
+        <div class="tl-item">
+          <h4 data-i18n="edu.2.t">קורסים והשתלמויות</h4>
+          <div class="when" data-i18n="edu.2.w">מתעדכן</div>
+          <p data-i18n="edu.2.d">למידה מתמדת של טכנולוגיות web מודרניות וכלים חדשים.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CONTACT ===================== -->
+<section id="contact">
+  <div class="wrap">
+    <span class="eyebrow" data-i18n="con.eyebrow">צור קשר</span>
+    <h2 class="title" data-i18n="con.title">בואו נבנה משהו ביחד</h2>
+    <p class="lead" data-i18n="con.lead">יש לך פרויקט בראש? מלאי את הטופס או דברי איתי ישירות — אשמח לשמוע.</p>
+    <div class="grid contact-grid" style="margin-top:30px;">
+      <div>
+        <div class="contact-list">
+          <a href="mailto:bashy3309@gmail.com">
+            <span class="ic">✉️</span>
+            <span class="meta"><b data-i18n="con.email">אימייל</b><span>bashy3309@gmail.com</span></span>
+          </a>
+          <a href="tel:+972548473309">
+            <span class="ic">📞</span>
+            <span class="meta"><b data-i18n="con.phone">טלפון</b><span dir="ltr">054-8473309</span></span>
+          </a>
+          <a href="https://wa.me/972548473309" target="_blank" rel="noopener">
+            <span class="ic">💬</span>
+            <span class="meta"><b data-i18n="con.wa">וואטסאפ</b><span data-i18n="con.wa.s">שלחי הודעה מהירה</span></span>
+          </a>
+          <a href="https://github.com/bashy-yacob" target="_blank" rel="noopener">
+            <span class="ic">🐙</span>
+            <span class="meta"><b data-i18n="con.gh">GitHub</b><span>github.com/bashy-yacob</span></span>
+          </a>
+        </div>
+      </div>
+      <div class="card">
+        <form id="contactForm" onsubmit="return submitForm(event)">
+          <div class="field">
+            <label for="cf-name" data-i18n="con.f.name">שם מלא</label>
+            <input id="cf-name" name="name" required />
+          </div>
+          <div class="field">
+            <label for="cf-email" data-i18n="con.f.email">אימייל</label>
+            <input id="cf-email" name="email" type="email" required />
+          </div>
+          <div class="field">
+            <label for="cf-msg" data-i18n="con.f.msg">הודעה</label>
+            <textarea id="cf-msg" name="message" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;" data-i18n="con.f.send">שליחה 🚀</button>
+          <div class="form-status" id="formStatus"></div>
+          <p class="form-note" data-i18n="con.f.note">הטופס יפתח את תוכנת המייל שלך עד שיוגדר מפתח Web3Forms (ראי הערה בקוד).</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="wrap foot-inner">
+    <div>© <span id="year"></span> <span data-i18n="brand">בשי יעקב</span> · <span data-i18n="foot.tag">מפתחת אתרים</span></div>
+    <div class="foot-soc">
+      <a href="mailto:bashy3309@gmail.com" aria-label="email">✉️</a>
+      <a href="https://wa.me/972548473309" target="_blank" rel="noopener" aria-label="whatsapp">💬</a>
+      <a href="https://github.com/bashy-yacob" target="_blank" rel="noopener" aria-label="github">🐙</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ============================================================
+   I18N — כל הטקסטים. לעריכת תוכן: שני כאן (he = עברית, en = אנגלית).
+   ============================================================ */
+const I18N = {
+  he: {
+    "brand": "בשי יעקב",
+    "nav.services": "שירותים", "nav.projects": "פרויקטים", "nav.about": "אודות", "nav.skills": "כישורים", "nav.contact": "צור קשר",
+    "hero.eyebrow": "מפתחת Full-Stack & בניית אתרים",
+    "hero.title": 'בונה אתרים <span class="hl">שמביאים תוצאות</span>',
+    "hero.sub": "היי, אני בשי — מפתחת אתרים. אני בונה אתרי תדמית, חנויות ומערכות web מהירות, נקיות ורספונסיביות. בואו נהפוך את הרעיון שלכם לאתר חי.",
+    "hero.cta1": "בואו נדבר 💬", "hero.cta2": "לעבודות שלי",
+    "hero.b1": "⚡ אתרים מהירים", "hero.b2": "📱 מותאם מובייל", "hero.b3": "🌐 דו-לשוני",
+    "hero.card.name": "בשי יעקב", "hero.card.role": "Web Developer · Full-Stack",
+    "hero.card.desc": "React · TypeScript · Node.js · בניית אתרים מקצה לקצה.",
+    "hero.stat1n": "10+", "hero.stat1l": "פרויקטים", "hero.stat2n": "2", "hero.stat2l": "שפות", "hero.stat3n": "100%", "hero.stat3l": "מסירות",
+    "srv.eyebrow": "שירותים", "srv.title": "חבילות שמתאימות לעסק שלך",
+    "srv.lead": "בחרי את החבילה שמתאימה לך — או דברי איתי לפתרון מותאם אישית.",
+    "srv.1.t": "אתר תדמית", "srv.1.p": "החל מ-₪1,500 *", "srv.1.d": "נוכחות דיגיטלית מקצועית שמייצרת אמון ולקוחות.",
+    "srv.1.f1": "עיצוב מותאם אישית", "srv.1.f2": "רספונסיבי לכל מסך", "srv.1.f3": "טופס יצירת קשר", "srv.1.f4": "חיבור לרשתות חברתיות",
+    "srv.2.t": "אתר מכירות / חנות", "srv.2.p": "החל מ-₪3,500 *", "srv.2.d": "חנות אונליין שמוכרת — עם סל קנייה ותשלום מאובטח.",
+    "srv.2.f1": "קטלוג מוצרים וניהול", "srv.2.f2": "סל קנייה ותשלום", "srv.2.f3": "ניהול הזמנות", "srv.2.f4": "מותאם לקידום (SEO)",
+    "srv.3.t": "תחזוקת אתרים", "srv.3.p": "חבילה חודשית *", "srv.3.d": "שקט נפשי — האתר שלך מעודכן, מאובטח וזמין תמיד.",
+    "srv.3.f1": "עדכונים שוטפים", "srv.3.f2": "גיבויים ואבטחה", "srv.3.f3": "תיקוני תקלות", "srv.3.f4": "תמיכה שוטפת",
+    "srv.note": "* המחירים הם להמחשה בלבד וניתנים לעריכה. מחיר סופי לפי היקף הפרויקט.",
+    "prj.eyebrow": "תיק עבודות", "prj.title": "פרויקטים נבחרים",
+    "prj.lead": "כמה מהדברים שבניתי — כולל אתר חי שאפשר ללחוץ ולראות עכשיו.",
+    "prj.live": "אתר חי", "prj.viewlive": "לצפייה באתר החי ↗", "prj.code": "קוד ב-GitHub",
+    "prj.w.t": "אתר חתונה", "prj.w.d": "אתר אירוע אינטראקטיבי לזוג — עם קיר ברכות לאורחים וספירה לאחור ליום הגדול.",
+    "prj.g.t": "GymFlow — ניהול מועדון כושר", "prj.g.d": "מערכת לניהול חברי מועדון כושר: מנויים, שיעורים ולוח זמנים. (תיאור לדוגמה — ניתן לעריכה)",
+    "prj.v.t": "פלטפורמת גיוס וניהול", "prj.v.d": "פלטפורמה לחיבור בין מועמדים למשרות וניהול תהליך הגיוס. (תיאור לדוגמה — ניתן לעריכה)",
+    "abt.eyebrow": "אודות", "abt.title": "קצת עליי",
+    "abt.p1": "אני מפתחת אתרים שאוהבת להפוך רעיונות לפתרונות דיגיטליים אמיתיים. מתמחה בבניית ממשקים נקיים, מהירים ונוחים — מאתרי תדמית פשוטים ועד מערכות web מורכבות.",
+    "abt.p2": "אני מאמינה בקוד נקי, בתקשורת ברורה עם הלקוח, ובמסירת פרויקט שגם נראה טוב וגם עובד מצוין. (טקסט לדוגמה — ניתן לעריכה.)",
+    "exp.eyebrow": "ניסיון", "exp.title": "ניסיון מקצועי",
+    "exp.1.t": "מפתחת אתרים עצמאית (Freelance)", "exp.1.w": "היום", "exp.1.d": "בניית אתרים ומערכות web ללקוחות — מאפיון ועיצוב ועד פיתוח והעלאה לאוויר.",
+    "exp.2.t": "פרויקטי פיתוח Full-Stack", "exp.2.w": "לאחרונה", "exp.2.d": "פיתוח אפליקציות עם React, TypeScript ו-Node.js. (פרטים לדוגמה — ניתן לעריכה.)",
+    "skl.eyebrow": "כישורים", "skl.title": "טכנולוגיות וכלים",
+    "edu.eyebrow": "השכלה", "edu.title": "השכלה והכשרה",
+    "edu.1.t": "לימודי הנדסת תוכנה / פיתוח", "edu.1.w": "שנת לימוד", "edu.1.d": "בסיס תיאורטי ומעשי בפיתוח תוכנה, אלגוריתמים ובניית מערכות. (פרטים לדוגמה — ניתן לעריכה.)",
+    "edu.2.t": "קורסים והשתלמויות", "edu.2.w": "מתעדכן", "edu.2.d": "למידה מתמדת של טכנולוגיות web מודרניות וכלים חדשים.",
+    "con.eyebrow": "צור קשר", "con.title": "בואו נבנה משהו ביחד",
+    "con.lead": "יש לך פרויקט בראש? מלאי את הטופס או דברי איתי ישירות — אשמח לשמוע.",
+    "con.email": "אימייל", "con.phone": "טלפון", "con.wa": "וואטסאפ", "con.wa.s": "שלחי הודעה מהירה", "con.gh": "GitHub",
+    "con.f.name": "שם מלא", "con.f.email": "אימייל", "con.f.msg": "הודעה", "con.f.send": "שליחה 🚀",
+    "con.f.note": "הטופס יפתח את תוכנת המייל שלך עד שיוגדר מפתח Web3Forms (ראי הערה בקוד).",
+    "foot.tag": "מפתחת אתרים"
+  },
+  en: {
+    "brand": "Bashy Yacob",
+    "nav.services": "Services", "nav.projects": "Projects", "nav.about": "About", "nav.skills": "Skills", "nav.contact": "Contact",
+    "hero.eyebrow": "Full-Stack Developer & Web Builder",
+    "hero.title": 'Building websites <span class="hl">that get results</span>',
+    "hero.sub": "Hi, I'm Bashy — a web developer. I build fast, clean and responsive landing pages, online stores and web systems. Let's turn your idea into a live website.",
+    "hero.cta1": "Let's talk 💬", "hero.cta2": "View my work",
+    "hero.b1": "⚡ Fast websites", "hero.b2": "📱 Mobile-friendly", "hero.b3": "🌐 Bilingual",
+    "hero.card.name": "Bashy Yacob", "hero.card.role": "Web Developer · Full-Stack",
+    "hero.card.desc": "React · TypeScript · Node.js · end-to-end web development.",
+    "hero.stat1n": "10+", "hero.stat1l": "Projects", "hero.stat2n": "2", "hero.stat2l": "Languages", "hero.stat3n": "100%", "hero.stat3l": "Commitment",
+    "srv.eyebrow": "Services", "srv.title": "Packages that fit your business",
+    "srv.lead": "Pick the package that suits you — or talk to me for a custom solution.",
+    "srv.1.t": "Landing / Brand Site", "srv.1.p": "From $450 *", "srv.1.d": "A professional digital presence that builds trust and brings clients.",
+    "srv.1.f1": "Custom design", "srv.1.f2": "Responsive on every screen", "srv.1.f3": "Contact form", "srv.1.f4": "Social media links",
+    "srv.2.t": "E-commerce / Store", "srv.2.p": "From $1,000 *", "srv.2.d": "An online store that sells — with cart and secure checkout.",
+    "srv.2.f1": "Product catalog & management", "srv.2.f2": "Cart & checkout", "srv.2.f3": "Order management", "srv.2.f4": "SEO-ready",
+    "srv.3.t": "Website Maintenance", "srv.3.p": "Monthly plan *", "srv.3.d": "Peace of mind — your site stays updated, secure and online.",
+    "srv.3.f1": "Ongoing updates", "srv.3.f2": "Backups & security", "srv.3.f3": "Bug fixes", "srv.3.f4": "Ongoing support",
+    "srv.note": "* Prices are illustrative and editable. Final price depends on project scope.",
+    "prj.eyebrow": "Portfolio", "prj.title": "Selected Projects",
+    "prj.lead": "A few things I've built — including a live site you can open right now.",
+    "prj.live": "Live", "prj.viewlive": "View live site ↗", "prj.code": "Code on GitHub",
+    "prj.w.t": "Wedding Website", "prj.w.d": "An interactive event site for a couple — with a guest wishes wall and a countdown to the big day.",
+    "prj.g.t": "GymFlow — Fitness Club Management", "prj.g.d": "A system for managing gym members: subscriptions, classes and scheduling. (Sample text — editable)",
+    "prj.v.t": "Recruitment & Management Platform", "prj.v.d": "A platform connecting candidates with positions and managing the hiring process. (Sample text — editable)",
+    "abt.eyebrow": "About", "abt.title": "A bit about me",
+    "abt.p1": "I'm a web developer who loves turning ideas into real digital solutions. I specialize in clean, fast and intuitive interfaces — from simple landing pages to complex web systems.",
+    "abt.p2": "I believe in clean code, clear communication with the client, and delivering a project that both looks great and works perfectly. (Sample text — editable.)",
+    "exp.eyebrow": "Experience", "exp.title": "Professional Experience",
+    "exp.1.t": "Freelance Web Developer", "exp.1.w": "Present", "exp.1.d": "Building websites and web systems for clients — from spec and design to development and launch.",
+    "exp.2.t": "Full-Stack Development Projects", "exp.2.w": "Recently", "exp.2.d": "Building apps with React, TypeScript and Node.js. (Sample details — editable.)",
+    "skl.eyebrow": "Skills", "skl.title": "Technologies & Tools",
+    "edu.eyebrow": "Education", "edu.title": "Education & Training",
+    "edu.1.t": "Software Engineering / Development Studies", "edu.1.w": "Study year", "edu.1.d": "Theoretical and practical foundation in software development, algorithms and systems. (Sample details — editable.)",
+    "edu.2.t": "Courses & Training", "edu.2.w": "Ongoing", "edu.2.d": "Continuous learning of modern web technologies and new tools.",
+    "con.eyebrow": "Contact", "con.title": "Let's build something together",
+    "con.lead": "Got a project in mind? Fill the form or reach out directly — I'd love to hear about it.",
+    "con.email": "Email", "con.phone": "Phone", "con.wa": "WhatsApp", "con.wa.s": "Send a quick message", "con.gh": "GitHub",
+    "con.f.name": "Full name", "con.f.email": "Email", "con.f.msg": "Message", "con.f.send": "Send 🚀",
+    "con.f.note": "The form opens your email app until a Web3Forms key is set (see note in code).",
+    "foot.tag": "Web Developer"
+  }
+};
+
+/* ====== Web3Forms: paste your free access key here to enable auto-email ======
+   Get one at https://web3forms.com (free). Replace the placeholder below.
+   While it stays as the placeholder, the form gracefully falls back to mailto. */
+const WEB3FORMS_KEY = "YOUR_WEB3FORMS_ACCESS_KEY";
+
+/* ---------- language ---------- */
+let currentLang = localStorage.getItem("lang") || "he";
+
+function applyLang(lang) {
+  const dict = I18N[lang];
+  document.documentElement.lang = lang;
+  document.documentElement.dir = (lang === "he") ? "rtl" : "ltr";
+  document.documentElement.style.setProperty("--dirsign", (lang === "he") ? "-1" : "1");
+  document.querySelectorAll("[data-i18n]").forEach(function (el) {
+    const key = el.getAttribute("data-i18n");
+    if (dict[key] !== undefined) el.innerHTML = dict[key];
+  });
+  document.getElementById("langBtn").textContent = (lang === "he") ? "EN" : "עב";
+  currentLang = lang;
+  localStorage.setItem("lang", lang);
+}
+function toggleLang() { applyLang(currentLang === "he" ? "en" : "he"); }
+
+/* ---------- mobile menu ---------- */
+function toggleMenu() { document.getElementById("navLinks").classList.toggle("open"); }
+document.querySelectorAll("#navLinks a").forEach(function (a) {
+  a.addEventListener("click", function () { document.getElementById("navLinks").classList.remove("open"); });
+});
+
+/* ---------- contact form ---------- */
+function submitForm(e) {
+  e.preventDefault();
+  const f = e.target;
+  const name = f.name.value.trim();
+  const email = f.email.value.trim();
+  const message = f.message.value.trim();
+  const status = document.getElementById("formStatus");
+  const t = (currentLang === "he");
+
+  // Fallback to mailto if no Web3Forms key configured yet
+  if (!WEB3FORMS_KEY || WEB3FORMS_KEY === "YOUR_WEB3FORMS_ACCESS_KEY") {
+    const subj = encodeURIComponent((t ? "פנייה מהאתר מ-" : "Website inquiry from ") + name);
+    const body = encodeURIComponent((t ? "שם: " : "Name: ") + name + "\n" +
+      (t ? "אימייל: " : "Email: ") + email + "\n\n" + message);
+    window.location.href = "mailto:bashy3309@gmail.com?subject=" + subj + "&body=" + body;
+    status.style.color = "var(--brand-2)";
+    status.textContent = t ? "נפתחת תוכנת המייל שלך…" : "Opening your email app…";
+    return false;
+  }
+
+  status.style.color = "var(--muted)";
+  status.textContent = t ? "שולח…" : "Sending…";
+  fetch("https://api.web3forms.com/submit", {
+    method: "POST",
+    headers: { "Content-Type": "application/json", "Accept": "application/json" },
+    body: JSON.stringify({ access_key: WEB3FORMS_KEY, name: name, email: email, message: message })
+  }).then(function (r) { return r.json(); })
+    .then(function (data) {
+      if (data.success) {
+        status.style.color = "var(--brand-2)";
+        status.textContent = t ? "תודה! ההודעה נשלחה ✅" : "Thanks! Your message was sent ✅";
+        f.reset();
+      } else { throw new Error("failed"); }
+    }).catch(function () {
+      status.style.color = "var(--accent)";
+      status.textContent = t ? "שגיאה בשליחה — נסי שוב או שלחי מייל ישירות." : "Sending failed — please try again or email directly.";
+    });
+  return false;
+}
+
+/* ---------- init ---------- */
+document.getElementById("year").textContent = new Date().getFullYear();
+applyLang(currentLang);
+</script>
+</body>
+</html>
