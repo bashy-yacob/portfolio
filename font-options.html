@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>בחירת פונט — דוגמאות</title>
+<meta name="robots" content="noindex" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700&family=Frank+Ruhl+Libre:wght@600;700;800&family=Heebo:wght@400;700;800&family=Rubik:wght@400;600;800&family=Secular+One&family=IBM+Plex+Sans+Hebrew:wght@400;600;700&family=Noto+Serif+Hebrew:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f6f4ef; --surface: #fffefb; --ink: #211f1c; --muted: #76716a;
+    --line: #e7e2d8; --accent: #b0512e; --shadow: 0 18px 40px rgba(33,31,28,.07);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Assistant", system-ui, sans-serif; background: var(--bg); color: var(--ink);
+    line-height: 1.6; -webkit-font-smoothing: antialiased; padding: 40px 22px 80px; }
+  .head { max-width: 980px; margin: 0 auto 32px; text-align: center; }
+  .head .eyebrow { color: var(--accent); font-weight: 700; letter-spacing: .14em; text-transform: uppercase; font-size: .76rem; }
+  .head h1 { font-family: "Frank Ruhl Libre", serif; font-size: clamp(1.6rem, 4vw, 2.2rem); margin: 8px 0 10px; }
+  .head p { color: var(--muted); max-width: 640px; margin: 0 auto; }
+  .head .tip { margin-top: 14px; display: inline-block; background: rgba(176,81,46,.09); color: #97431f;
+    border: 1px solid rgba(176,81,46,.25); border-radius: 999px; padding: 8px 18px; font-weight: 700; font-size: .9rem; }
+
+  .grid { max-width: 980px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  @media (max-width: 760px) { .grid { grid-template-columns: 1fr; } }
+
+  .opt { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 24px; box-shadow: var(--shadow); }
+  .label { display: flex; align-items: center; gap: 11px; margin-bottom: 18px; padding-bottom: 16px; border-bottom: 1px solid var(--line); }
+  .num { width: 30px; height: 30px; flex: none; border-radius: 9px; background: var(--accent); color: #fff;
+    display: grid; place-items: center; font-weight: 800; font-family: "Frank Ruhl Libre", serif; }
+  .label b { font-size: 1rem; }
+  .label span { color: var(--muted); font-size: .82rem; }
+
+  .samp .eyebrow { color: var(--accent); font-weight: 700; letter-spacing: .1em; text-transform: uppercase; font-size: .72rem; }
+  .samp .h { line-height: 1.15; }
+  .samp h3.h { font-size: 1.7rem; font-weight: 700; margin: 6px 0 2px; }
+  .samp .en { font-size: 1.15rem; color: var(--muted); direction: ltr; margin-bottom: 12px; }
+  .samp p.b { color: var(--muted); font-size: .98rem; margin-bottom: 14px; }
+  .samp .who { font-size: .95rem; color: var(--muted); }
+  .samp .who b { color: var(--ink); }
+
+  /* ---- font pairings ---- */
+  .f1 .h { font-family: "Frank Ruhl Libre", serif; }   .f1 .b, .f1 .eyebrow { font-family: "Assistant", sans-serif; }
+  .f2 .h { font-family: "Heebo", sans-serif; }          .f2 .b, .f2 .eyebrow { font-family: "Assistant", sans-serif; }
+  .f3 .h { font-family: "Rubik", sans-serif; }          .f3 .b, .f3 .eyebrow { font-family: "Rubik", sans-serif; }
+  .f4 .h { font-family: "Secular One", sans-serif; }    .f4 .b, .f4 .eyebrow { font-family: "Assistant", sans-serif; }
+  .f5 .h { font-family: "IBM Plex Sans Hebrew", sans-serif; } .f5 .b, .f5 .eyebrow { font-family: "IBM Plex Sans Hebrew", sans-serif; }
+  .f6 .h { font-family: "Noto Serif Hebrew", serif; }   .f6 .b, .f6 .eyebrow { font-family: "Assistant", sans-serif; }
+</style>
+</head>
+<body>
+
+<div class="head">
+  <span class="eyebrow">בחירת פונט</span>
+  <h1>6 זוגות פונטים — מה הכי יפה לך?</h1>
+  <p>כל קובייה מציגה את אותו טקסט בפונט אחר (כותרת + גוף, עברית ואנגלית). הסתכלי, ותגידי לי מספר.</p>
+  <span class="tip">בחרת? כתבי לי "פונט 1 / 2 / 3 / 4 / 5 / 6" ואחיל אותו על כל האתר.</span>
+</div>
+
+<div class="grid">
+
+  <div class="opt f1">
+    <div class="label"><span class="num">1</span><div><b>Frank Ruhl Libre + Assistant</b><br><span>אדיטוריאלי ואלגנטי · הנוכחי</span></div></div>
+    <div class="samp">
+      <span class="eyebrow">מפתחת Full-Stack</span>
+      <h3 class="h">בונה אתרים שמביאים תוצאות</h3>
+      <div class="h en">Building websites that get results</div>
+      <p class="b">אני מפתחת web שאוהבת לבנות דברים עד הסוף — מוצרים שלמים, מלוטשים ונקיים מבאגים.</p>
+      <div class="who"><b class="h">באשי קליין</b> · Web Developer</div>
+    </div>
+  </div>
+
+  <div class="opt f2">
+    <div class="label"><span class="num">2</span><div><b>Heebo</b><br><span>מודרני, נקי וטכני</span></div></div>
+    <div class="samp">
+      <span class="eyebrow">מפתחת Full-Stack</span>
+      <h3 class="h">בונה אתרים שמביאים תוצאות</h3>
+      <div class="h en">Building websites that get results</div>
+      <p class="b">אני מפתחת web שאוהבת לבנות דברים עד הסוף — מוצרים שלמים, מלוטשים ונקיים מבאגים.</p>
+      <div class="who"><b class="h">באשי קליין</b> · Web Developer</div>
+    </div>
+  </div>
+
+  <div class="opt f3">
+    <div class="label"><span class="num">3</span><div><b>Rubik</b><br><span>רך, עגול וידידותי</span></div></div>
+    <div class="samp">
+      <span class="eyebrow">מפתחת Full-Stack</span>
+      <h3 class="h">בונה אתרים שמביאים תוצאות</h3>
+      <div class="h en">Building websites that get results</div>
+      <p class="b">אני מפתחת web שאוהבת לבנות דברים עד הסוף — מוצרים שלמים, מלוטשים ונקיים מבאגים.</p>
+      <div class="who"><b class="h">באשי קליין</b> · Web Developer</div>
+    </div>
+  </div>
+
+  <div class="opt f4">
+    <div class="label"><span class="num">4</span><div><b>Secular One + Assistant</b><br><span>נועז, בולט ובטוח</span></div></div>
+    <div class="samp">
+      <span class="eyebrow">מפתחת Full-Stack</span>
+      <h3 class="h">בונה אתרים שמביאים תוצאות</h3>
+      <div class="h en">Building websites that get results</div>
+      <p class="b">אני מפתחת web שאוהבת לבנות דברים עד הסוף — מוצרים שלמים, מלוטשים ונקיים מבאגים.</p>
+      <div class="who"><b class="h">באשי קליין</b> · Web Developer</div>
+    </div>
+  </div>
+
+  <div class="opt f5">
+    <div class="label"><span class="num">5</span><div><b>IBM Plex Sans Hebrew</b><br><span>טכני, מדויק ומקצועי</span></div></div>
+    <div class="samp">
+      <span class="eyebrow">מפתחת Full-Stack</span>
+      <h3 class="h">בונה אתרים שמביאים תוצאות</h3>
+      <div class="h en">Building websites that get results</div>
+      <p class="b">אני מפתחת web שאוהבת לבנות דברים עד הסוף — מוצרים שלמים, מלוטשים ונקיים מבאגים.</p>
+      <div class="who"><b class="h">באשי קליין</b> · Web Developer</div>
+    </div>
+  </div>
+
+  <div class="opt f6">
+    <div class="label"><span class="num">6</span><div><b>Noto Serif Hebrew + Assistant</b><br><span>קלאסי, רציני ומעודן</span></div></div>
+    <div class="samp">
+      <span class="eyebrow">מפתחת Full-Stack</span>
+      <h3 class="h">בונה אתרים שמביאים תוצאות</h3>
+      <div class="h en">Building websites that get results</div>
+      <p class="b">אני מפתחת web שאוהבת לבנות דברים עד הסוף — מוצרים שלמים, מלוטשים ונקיים מבאגים.</p>
+      <div class="who"><b class="h">באשי קליין</b> · Web Developer</div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
