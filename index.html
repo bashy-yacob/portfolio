@@ -284,6 +284,36 @@
   .float-btn .icon { width: 26px; height: 26px; }
   @keyframes float-in { from { transform: scale(0); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 
+  /* ---------- availability badge ---------- */
+  .avail { display: flex; width: fit-content; align-items: center; gap: 8px; margin-bottom: 16px;
+    padding: 6px 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface);
+    font-size: .82rem; font-weight: 600; color: var(--muted); }
+  .avail .dot2 { width: 8px; height: 8px; border-radius: 50%; background: #2ea043; flex: none;
+    box-shadow: 0 0 0 0 rgba(46,160,67,.5); animation: pulse-g 1.8s infinite; }
+  @keyframes pulse-g { 0% { box-shadow: 0 0 0 0 rgba(46,160,67,.5); } 70% { box-shadow: 0 0 0 8px rgba(46,160,67,0); } 100% { box-shadow: 0 0 0 0 rgba(46,160,67,0); } }
+
+  /* ---------- active nav (scroll-spy) ---------- */
+  .nav-links a.active { color: var(--accent); }
+
+  /* ---------- back to top ---------- */
+  .to-top { position: fixed; bottom: 22px; inset-inline-start: 22px; z-index: 60;
+    width: 46px; height: 46px; border-radius: 50%; background: var(--surface); border: 1px solid var(--line);
+    color: var(--ink); display: grid; place-items: center; cursor: pointer; box-shadow: var(--shadow);
+    opacity: 0; pointer-events: none; transform: translateY(8px);
+    transition: opacity .25s, transform .25s, border-color .2s, color .2s; }
+  .to-top.show { opacity: 1; pointer-events: auto; transform: none; }
+  .to-top:hover { border-color: var(--accent); color: var(--accent); }
+  .to-top .icon { width: 20px; height: 20px; }
+
+  /* ---------- skill groups ---------- */
+  .skill-group { margin-bottom: 20px; }
+  .skill-group:last-child { margin-bottom: 0; }
+  .skill-cat { font-size: .75rem; font-weight: 700; color: var(--muted); text-transform: uppercase;
+    letter-spacing: .12em; margin-bottom: 10px; }
+
+  /* ---------- honeypot (spam trap) ---------- */
+  .hp-field { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; overflow: hidden; }
+
   /* ---------- respect reduced motion ---------- */
   @media (prefers-reduced-motion: reduce) {
     .reveal { opacity: 1 !important; transform: none !important; transition: none; }
@@ -350,6 +380,7 @@
   <symbol id="i-moon" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></symbol>
   <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2"/><line x1="12" y1="2.5" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="21.5"/><line x1="2.5" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="21.5" y2="12"/><line x1="4.9" y1="4.9" x2="6.7" y2="6.7"/><line x1="17.3" y1="17.3" x2="19.1" y2="19.1"/><line x1="4.9" y1="19.1" x2="6.7" y2="17.3"/><line x1="17.3" y1="6.7" x2="19.1" y2="4.9"/></symbol>
   <symbol id="i-quote" viewBox="0 0 24 24"><path d="M7.5 6C5 6 3.5 8 3.5 10.5S5 15 7.5 15c0 2.2-1.4 3.4-3 4M17.5 6C15 6 13.5 8 13.5 10.5S15 15 17.5 15c0 2.2-1.4 3.4-3 4"/></symbol>
+  <symbol id="i-up" viewBox="0 0 24 24"><line x1="12" y1="19" x2="12" y2="6"/><polyline points="6 12 12 6 18 12"/></symbol>
 </defs></svg>
 
 <!-- ===================== NAV ===================== -->
@@ -376,6 +407,7 @@
 <section class="hero" id="hero">
   <div class="wrap hero-grid">
     <div>
+      <span class="avail"><span class="dot2"></span><span data-i18n="hero.avail">זמינה לעבודה</span></span>
       <span class="eyebrow" data-i18n="hero.eyebrow">מפתחת Full-Stack &amp; בניית אתרים</span>
       <h1 data-i18n="hero.title">בונה אתרים <span class="hl">שמביאים תוצאות</span></h1>
       <p class="sub" data-i18n="hero.sub">היי, אני באשי — מפתחת אתרים. אני בונה אתרי תדמית, חנויות ומערכות web מהירות, נקיות ורספונסיביות. בואו נהפוך את הרעיון שלכם לאתר חי.</p>
@@ -569,12 +601,27 @@
     <div>
       <span class="eyebrow" data-i18n="skl.eyebrow">כישורים</span>
       <h2 class="title" data-i18n="skl.title">טכנולוגיות וכלים</h2>
-      <div class="skill-wrap" style="margin-top:20px;">
-        <span class="skill">React</span><span class="skill">TypeScript</span><span class="skill">JavaScript</span>
-        <span class="skill">Next.js</span><span class="skill">Node.js</span><span class="skill">HTML5</span>
-        <span class="skill">CSS3</span><span class="skill">Git &amp; GitHub</span><span class="skill">C#</span>
-        <span class="skill">NestJS</span><span class="skill">.NET</span><span class="skill">MySQL</span>
-        <span class="skill">REST API</span><span class="skill">Responsive Design</span>
+      <div style="margin-top:20px;">
+        <div class="skill-group">
+          <h4 class="skill-cat" data-i18n="skl.fe">Frontend</h4>
+          <div class="skill-wrap">
+            <span class="skill">React</span><span class="skill">Next.js</span><span class="skill">TypeScript</span>
+            <span class="skill">JavaScript</span><span class="skill">HTML5</span><span class="skill">CSS3</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h4 class="skill-cat" data-i18n="skl.be">Backend</h4>
+          <div class="skill-wrap">
+            <span class="skill">Node.js</span><span class="skill">NestJS</span><span class="skill">C#</span>
+            <span class="skill">.NET</span><span class="skill">MySQL</span><span class="skill">REST API</span><span class="skill">JWT</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h4 class="skill-cat" data-i18n="skl.tools">כלים</h4>
+          <div class="skill-wrap">
+            <span class="skill">Git &amp; GitHub</span><span class="skill">Responsive Design</span><span class="skill">Design Patterns</span>
+          </div>
+        </div>
       </div>
     </div>
     <div>
@@ -621,6 +668,7 @@
       </div>
       <div class="card">
         <form id="contactForm" onsubmit="return submitForm(event)">
+          <input type="text" name="company" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true" />
           <div class="field">
             <label for="cf-name" data-i18n="con.f.name">שם מלא</label>
             <input id="cf-name" name="name" required />
@@ -643,6 +691,7 @@
 
 <!-- ===================== FLOATING CALL ===================== -->
 <a class="float-btn" href="tel:+972548473309" aria-label="התקשרי אליי"><svg class="icon"><use href="#i-phone"/></svg></a>
+<button class="to-top" id="toTop" aria-label="חזרה למעלה" onclick="scrollToTop()"><svg class="icon"><use href="#i-up"/></svg></button>
 
 <!-- ===================== FOOTER ===================== -->
 <footer>
@@ -664,6 +713,7 @@ const I18N = {
   he: {
     "brand": "באשי קליין",
     "nav.services": "שירותים", "nav.projects": "פרויקטים", "nav.testimonials": "המלצות", "nav.about": "אודות", "nav.skills": "כישורים", "nav.contact": "צור קשר",
+    "hero.avail": "זמינה לעבודה",
     "hero.eyebrow": "מפתחת Full-Stack & בניית אתרים",
     "hero.title": 'בונה אתרים <span class="hl">שמביאים תוצאות</span>',
     "hero.sub": "היי, אני באשי — מפתחת אתרים. אני בונה אתרי תדמית, חנויות ומערכות web מהירות, נקיות ורספונסיביות. בואו נהפוך את הרעיון שלכם לאתר חי.",
@@ -701,7 +751,7 @@ const I18N = {
     "exp.eyebrow": "ניסיון", "exp.title": "ניסיון מקצועי",
     "exp.1.t": "Full Stack Developer — Oz Software (התמחות)", "exp.1.w": "2025 – היום", "exp.1.d": "פיתוח מערכות production עם NestJS ו-TypeScript, בניית רכיבי React, ניהול תקשורת שרת עם React Query, ועבודת Git כולל code reviews.",
     "exp.2.t": "פרויקטים אישיים — Full-Stack", "exp.2.w": "2023 – היום", "exp.2.d": "בניית אפליקציות full-stack מאפס, כמו GymFlow (ניהול מכון כושר) ו'עד החתונה' — מאפיון ובניית מסכים ועד פריסה לאוויר.",
-    "skl.eyebrow": "כישורים", "skl.title": "טכנולוגיות וכלים",
+    "skl.eyebrow": "כישורים", "skl.title": "טכנולוגיות וכלים", "skl.fe": "Frontend", "skl.be": "Backend", "skl.tools": "כלים",
     "edu.eyebrow": "השכלה", "edu.title": "השכלה והכשרה",
     "edu.1.t": "הנדסת תוכנה — מה״ט (MAHAT)", "edu.1.w": "2023 – 2025", "edu.1.d": "דיפלומת הנדסאי תוכנה.",
     "edu.2.t": "לימודים אקדמיים מורחבים — מכון לב", "edu.2.w": "2023 – 2025", "edu.2.d": "מבני נתונים ואלגוריתמים, מערכות הפעלה, לוגיקה ואלגברה לינארית, מתמטיקה בדידה, מבוא לבינה מלאכותית, וחומרה ומערכות מחשב.",
@@ -714,6 +764,7 @@ const I18N = {
   en: {
     "brand": "Bashy Klein",
     "nav.services": "Services", "nav.projects": "Projects", "nav.testimonials": "Reviews", "nav.about": "About", "nav.skills": "Skills", "nav.contact": "Contact",
+    "hero.avail": "Available for work",
     "hero.eyebrow": "Full-Stack Developer & Web Builder",
     "hero.title": 'Building websites <span class="hl">that get results</span>',
     "hero.sub": "Hi, I'm Bashy — a web developer. I build fast, clean and responsive landing pages, online stores and web systems. Let's turn your idea into a live website.",
@@ -751,7 +802,7 @@ const I18N = {
     "exp.eyebrow": "Experience", "exp.title": "Professional Experience",
     "exp.1.t": "Full Stack Developer — Oz Software (Practicum)", "exp.1.w": "2025 – Present", "exp.1.d": "Developing production systems with NestJS and TypeScript, building React components, managing server communication with React Query, and working in Git including code reviews.",
     "exp.2.t": "Personal Projects — Full-Stack", "exp.2.w": "2023 – Present", "exp.2.d": "Building full-stack apps from scratch, such as GymFlow (gym management) and 'Until the Wedding' — from spec and screens to deployment.",
-    "skl.eyebrow": "Skills", "skl.title": "Technologies & Tools",
+    "skl.eyebrow": "Skills", "skl.title": "Technologies & Tools", "skl.fe": "Frontend", "skl.be": "Backend", "skl.tools": "Tools",
     "edu.eyebrow": "Education", "edu.title": "Education & Training",
     "edu.1.t": "Software Engineering Diploma — MAHAT", "edu.1.w": "2023 – 2025", "edu.1.d": "Practical software-engineering diploma.",
     "edu.2.t": "Extended Academic Studies — Machon Lev", "edu.2.w": "2023 – 2025", "edu.2.d": "Data structures & algorithms, operating systems, logic and linear algebra, discrete math, intro to AI, and computer hardware and systems.",
@@ -796,6 +847,7 @@ document.querySelectorAll("#navLinks a").forEach(function (a) {
 function submitForm(e) {
   e.preventDefault();
   const f = e.target;
+  if (f.company && f.company.value) { return false; } // honeypot: silently drop bots
   const name = f.name.value.trim();
   const email = f.email.value.trim();
   const message = f.message.value.trim();
@@ -862,11 +914,42 @@ function initReveal() {
   });
 }
 
+/* ---------- scroll spy (active nav) ---------- */
+function initScrollSpy() {
+  const links = Array.prototype.slice.call(document.querySelectorAll('#navLinks a[href^="#"]'));
+  const map = {};
+  links.forEach(function (a) {
+    const sec = document.getElementById(a.getAttribute("href").slice(1));
+    if (sec) map[a.getAttribute("href").slice(1)] = a;
+  });
+  const io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting && map[e.target.id]) {
+        links.forEach(function (a) { a.classList.remove("active"); });
+        map[e.target.id].classList.add("active");
+      }
+    });
+  }, { rootMargin: "-45% 0px -50% 0px", threshold: 0 });
+  Object.keys(map).forEach(function (id) { io.observe(document.getElementById(id)); });
+}
+
+/* ---------- back to top ---------- */
+function scrollToTop() { window.scrollTo({ top: 0, behavior: "smooth" }); }
+function initBackToTop() {
+  const btn = document.getElementById("toTop");
+  if (!btn) return;
+  window.addEventListener("scroll", function () {
+    btn.classList.toggle("show", window.scrollY > 500);
+  }, { passive: true });
+}
+
 /* ---------- init ---------- */
 document.getElementById("year").textContent = new Date().getFullYear();
 applyTheme(currentTheme);
 applyLang(currentLang);
 initReveal();
+initScrollSpy();
+initBackToTop();
 </script>
 </body>
 </html>
