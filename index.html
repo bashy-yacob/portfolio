@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>באשי קליין | מפתחת אתרים ופיתוח Full-Stack</title>
-<meta name="description" content="באשי קליין — מפתחת אתרים. בניית אתרי תדמית, חנויות ומערכות web. צרי קשר לפרויקט הבא שלך." />
+<meta name="description" content="באשי קליין — מפתחת אתרים ומערכות web. בניית אתרי תדמית, חנויות ומערכות מותאמות. צרי קשר לפרויקט הבא שלך." />
 
 <!-- ===== branding / SEO / social ===== -->
 <link rel="icon" href="favicon.svg" type="image/svg+xml" />
@@ -37,6 +37,7 @@
   אתר פורטפוליו — קובץ יחיד, עצמאי. כל התוכן והעיצוב כאן.
   לעריכת תוכן: חפשי את האובייקט I18N למטה (סביב אמצע הקובץ).
   כל מחרוזת קיימת בעברית (he) ובאנגלית (en).
+  חשוב: הטקסטים באובייקט I18N דורסים את הטקסט שב-HTML, לכן עורכים שם.
   אייקונים: ספריית SVG בראש ה-<body> (חפשי "icon sprite").
   ============================================================
 -->
@@ -144,6 +145,7 @@
   }
   .btn .icon { width: 18px; height: 18px; }
   .btn:hover { transform: translateY(-2px); }
+  .btn:disabled { opacity: .65; cursor: not-allowed; transform: none; }
   .btn-primary { background: var(--accent); color: #fff; box-shadow: 0 12px 26px rgba(176,81,46,.22); }
   .btn-primary:hover { background: var(--accent-2); }
   .btn-ghost { background: transparent; border-color: var(--line); color: var(--ink); }
@@ -254,19 +256,6 @@
   .foot-soc a:hover { border-color: var(--accent); color: var(--accent); }
   .foot-soc .icon { width: 19px; height: 19px; }
 
-  /* ---------- TESTIMONIALS ---------- */
-  .quote-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
-    padding: 28px; transition: transform .18s, border-color .2s, box-shadow .2s; }
-  .quote-card:hover { transform: translateY(-4px); border-color: rgba(176,81,46,.4); box-shadow: var(--shadow); }
-  .quote-card .qmark { color: var(--accent); margin-bottom: 12px; }
-  .quote-card .qmark .icon { width: 30px; height: 30px; stroke-width: 1.4; }
-  .quote-card p { font-family: var(--serif); font-size: 1.08rem; line-height: 1.6; }
-  .quote-card .who { margin-top: 18px; display: flex; align-items: center; gap: 12px; }
-  .quote-card .who .ava { width: 42px; height: 42px; flex: none; border-radius: 50%; background: var(--accent-tint);
-    color: var(--accent); display: grid; place-items: center; font-weight: 700; font-family: var(--serif); }
-  .quote-card .who b { display: block; font-size: .95rem; }
-  .quote-card .who span { color: var(--muted); font-size: .85rem; }
-
   /* ---------- richer project hover ---------- */
   .proj .ic { transition: transform .25s, background .25s, color .25s; }
   .proj:hover .ic { transform: scale(1.08) rotate(-4deg); background: var(--accent); color: #fff; }
@@ -275,7 +264,7 @@
   .reveal { opacity: 0; transform: translateY(22px); transition: opacity .6s ease, transform .6s ease; }
   .reveal.in { opacity: 1; transform: none; }
 
-  /* ---------- floating call button ---------- */
+  /* ---------- floating WhatsApp button ---------- */
   .float-btn { position: fixed; bottom: 22px; inset-inline-end: 22px; z-index: 60;
     width: 56px; height: 56px; border-radius: 50%; background: var(--accent); color: #fff;
     display: grid; place-items: center; box-shadow: 0 12px 28px rgba(176,81,46,.4);
@@ -318,7 +307,7 @@
   @media (prefers-reduced-motion: reduce) {
     .reveal { opacity: 1 !important; transform: none !important; transition: none; }
     .float-btn { animation: none; }
-    .btn:hover, .card:hover, .quote-card:hover, .proj:hover .ic, .icon-btn:hover { transform: none; }
+    .btn:hover, .card:hover, .proj:hover .ic, .icon-btn:hover { transform: none; }
     html, body { transition: none; }
     html { scroll-behavior: auto; }
   }
@@ -379,8 +368,8 @@
   <symbol id="i-code" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></symbol>
   <symbol id="i-moon" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></symbol>
   <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2"/><line x1="12" y1="2.5" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="21.5"/><line x1="2.5" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="21.5" y2="12"/><line x1="4.9" y1="4.9" x2="6.7" y2="6.7"/><line x1="17.3" y1="17.3" x2="19.1" y2="19.1"/><line x1="4.9" y1="19.1" x2="6.7" y2="17.3"/><line x1="17.3" y1="6.7" x2="19.1" y2="4.9"/></symbol>
-  <symbol id="i-quote" viewBox="0 0 24 24"><path d="M7.5 6C5 6 3.5 8 3.5 10.5S5 15 7.5 15c0 2.2-1.4 3.4-3 4M17.5 6C15 6 13.5 8 13.5 10.5S15 15 17.5 15c0 2.2-1.4 3.4-3 4"/></symbol>
   <symbol id="i-up" viewBox="0 0 24 24"><line x1="12" y1="19" x2="12" y2="6"/><polyline points="6 12 12 6 18 12"/></symbol>
+  <symbol id="i-server" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="7" rx="2"/><rect x="3" y="14" width="18" height="7" rx="2"/><line x1="7" y1="6.5" x2="7.01" y2="6.5"/><line x1="7" y1="17.5" x2="7.01" y2="17.5"/></symbol>
 </defs></svg>
 
 <!-- ===================== NAV ===================== -->
@@ -390,15 +379,14 @@
     <nav class="nav-links" id="navLinks">
       <a href="#services" data-i18n="nav.services">שירותים</a>
       <a href="#projects" data-i18n="nav.projects">פרויקטים</a>
-      <!-- <a href="#testimonials" data-i18n="nav.testimonials">המלצות</a> — מוסתר עד שיהיו המלצות אמיתיות -->
       <a href="#about" data-i18n="nav.about">אודות</a>
       <a href="#skills" data-i18n="nav.skills">כישורים</a>
       <a href="#contact" data-i18n="nav.contact">צור קשר</a>
     </nav>
     <div style="display:flex;gap:10px;align-items:center;">
-      <button class="icon-btn" id="themeBtn" aria-label="toggle theme" onclick="toggleTheme()"><svg class="icon"><use href="#i-moon"/></svg></button>
+      <button class="icon-btn" id="themeBtn" data-i18n-aria="aria.theme" aria-label="מצב תצוגה" onclick="toggleTheme()"><svg class="icon"><use href="#i-moon"/></svg></button>
       <button class="lang-btn" id="langBtn" onclick="toggleLang()">EN</button>
-      <button class="menu-toggle" id="menuToggle" aria-label="menu" onclick="toggleMenu()"><svg class="icon"><use href="#i-menu"/></svg></button>
+      <button class="menu-toggle" id="menuToggle" data-i18n-aria="aria.menu" aria-label="תפריט" onclick="toggleMenu()"><svg class="icon"><use href="#i-menu"/></svg></button>
     </div>
   </div>
 </header>
@@ -410,7 +398,7 @@
       <span class="avail"><span class="dot2"></span><span data-i18n="hero.avail">זמינה לעבודה</span></span>
       <span class="eyebrow" data-i18n="hero.eyebrow">מפתחת Full-Stack &amp; בניית אתרים</span>
       <h1 data-i18n="hero.title">בונה אתרים <span class="hl">שמביאים תוצאות</span></h1>
-      <p class="sub" data-i18n="hero.sub">היי, אני באשי — מפתחת אתרים. אני בונה אתרי תדמית, חנויות ומערכות web מהירות, נקיות ורספונסיביות. בואו נהפוך את הרעיון שלכם לאתר חי.</p>
+      <p class="sub" data-i18n="hero.sub">היי, אני באשי — מפתחת אתרים ומערכות web. אני בונה אתרי תדמית, חנויות ומערכות מותאמות, מהירות, נקיות ורספונסיביות. בואו נהפוך את הרעיון שלכם לאתר חי.</p>
       <div class="hero-cta">
         <a href="#contact" class="btn btn-primary"><span data-i18n="hero.cta1">בואו נדבר</span><svg class="icon"><use href="#i-chat"/></svg></a>
         <a href="#projects" class="btn btn-ghost"><span data-i18n="hero.cta2">לעבודות שלי</span></a>
@@ -425,11 +413,10 @@
       <div class="avatar"><svg class="icon"><use href="#i-code"/></svg></div>
       <h3 data-i18n="hero.card.name">באשי קליין</h3>
       <div class="role" data-i18n="hero.card.role">Web Developer · Full-Stack</div>
-      <p class="lead" style="margin-top:10px;font-size:.95rem;" data-i18n="hero.card.desc">React · TypeScript · Node.js · בניית אתרים מקצה לקצה.</p>
+      <p class="lead" style="margin-top:10px;font-size:.95rem;" data-i18n="hero.card.desc">React · TypeScript · Node.js · בניית אתרים ומערכות מקצה לקצה.</p>
       <div class="stat-row">
-        <div class="stat"><div class="n" data-i18n="hero.stat1n">10+</div><div class="l" data-i18n="hero.stat1l">פרויקטים</div></div>
-        <div class="stat"><div class="n" data-i18n="hero.stat2n">2</div><div class="l" data-i18n="hero.stat2l">שפות</div></div>
-        <div class="stat"><div class="n" data-i18n="hero.stat3n">100%</div><div class="l" data-i18n="hero.stat3l">מסירות</div></div>
+        <div class="stat"><div class="n" data-i18n="hero.stat1n">3</div><div class="l" data-i18n="hero.stat1l">מערכות full-stack</div></div>
+        <div class="stat"><div class="n" data-i18n="hero.stat2n">2</div><div class="l" data-i18n="hero.stat2l">אתרים חיים</div></div>
       </div>
     </aside>
   </div>
@@ -441,7 +428,7 @@
     <span class="eyebrow" data-i18n="srv.eyebrow">שירותים</span>
     <h2 class="title" data-i18n="srv.title">חבילות שמתאימות לעסק שלך</h2>
     <p class="lead" data-i18n="srv.lead">בחרי את החבילה שמתאימה לך — או דברי איתי לפתרון מותאם אישית.</p>
-    <div class="grid cards-3" style="margin-top:36px;">
+    <div class="grid cards-2" style="margin-top:36px;">
       <div class="card">
         <div class="ic"><svg class="icon"><use href="#i-layout"/></svg></div>
         <h3 data-i18n="srv.1.t">אתר תדמית</h3>
@@ -467,6 +454,18 @@
         </ul>
       </div>
       <div class="card">
+        <div class="ic"><svg class="icon"><use href="#i-server"/></svg></div>
+        <h3 data-i18n="srv.4.t">מערכות ותוכנות מותאמות</h3>
+        <div class="price" data-i18n="srv.4.p">לפי הצעה</div>
+        <p class="lead" style="font-size:.92rem;" data-i18n="srv.4.d">מערכת web שנבנית בדיוק לצורכי העסק או הקהילה שלך, מהאפיון ועד העלאה לאוויר.</p>
+        <ul class="feat">
+          <li><svg class="icon"><use href="#i-check"/></svg><span data-i18n="srv.4.f1">דשבורד ניהול</span></li>
+          <li><svg class="icon"><use href="#i-check"/></svg><span data-i18n="srv.4.f2">אזור אישי והרשאות</span></li>
+          <li><svg class="icon"><use href="#i-check"/></svg><span data-i18n="srv.4.f3">בסיס נתונים ולוגיקה עסקית</span></li>
+          <li><svg class="icon"><use href="#i-check"/></svg><span data-i18n="srv.4.f4">התאמה לעברית ולצרכים ייחודיים</span></li>
+        </ul>
+      </div>
+      <div class="card">
         <div class="ic"><svg class="icon"><use href="#i-tool"/></svg></div>
         <h3 data-i18n="srv.3.t">תחזוקת אתרים</h3>
         <div class="price" data-i18n="srv.3.p">לפי הצעה</div>
@@ -488,7 +487,7 @@
   <div class="wrap">
     <span class="eyebrow" data-i18n="prj.eyebrow">תיק עבודות</span>
     <h2 class="title" data-i18n="prj.title">פרויקטים נבחרים</h2>
-    <p class="lead" data-i18n="prj.lead">כמה מהדברים שבניתי — כולל אתר חי שאפשר ללחוץ ולראות עכשיו.</p>
+    <p class="lead" data-i18n="prj.lead">כמה מהדברים שבניתי — כולל אתרים חיים שאפשר ללחוץ ולראות עכשיו.</p>
     <div class="grid cards-3" style="margin-top:36px;">
 
       <!-- Wedding (LIVE) -->
@@ -496,7 +495,7 @@
         <div class="ic"><svg class="icon"><use href="#i-heart"/></svg></div>
         <span class="live-badge"><span class="pulse"></span><span data-i18n="prj.live">אתר חי</span></span>
         <h3 data-i18n="prj.w.t">עד החתונה — ספירה לאחור</h3>
-        <p class="lead" style="font-size:.92rem;" data-i18n="prj.w.d">יוצר עמודי ספירה לאחור אישיים לחתונה. כל זוג מקבל קישור ייחודי לשיתוף, קיר ברכות פתוח לאורחים, העלאת הזמנה, תאריך עברי ומצב "מזל טוב" אוטומטי ביום החתונה.</p>
+        <p class="lead" style="font-size:.92rem;" data-i18n="prj.w.d">יוצר עמודי ספירה לאחור אישיים לחתונה. כל זוג מקבל קישור ייחודי לשיתוף, קיר ברכות פתוח לאורחים, העלאת הזמנה, תאריך עברי ומצב 'מזל טוב' אוטומטי ביום החתונה. פותח מקצה לקצה, מהאפיון ועד הפריסה.</p>
         <div class="tags">
           <span class="tag">Next.js</span><span class="tag">TypeScript</span><span class="tag">Supabase</span><span class="tag">Tailwind</span>
         </div>
@@ -519,15 +518,17 @@
         </div>
       </div>
 
-      <!-- Volunteer / Recruitment -->
+      <!-- Der Shtele (LIVE) -->
       <div class="card proj">
         <div class="ic"><svg class="icon"><use href="#i-users"/></svg></div>
+        <span class="live-badge"><span class="pulse"></span><span data-i18n="prj.live">אתר חי</span></span>
         <h3 data-i18n="prj.v.t">Der Shtele — פלטפורמת השמה</h3>
-        <p class="lead" style="font-size:.92rem;" data-i18n="prj.v.d">פלטפורמת השמה תעסוקתית: לוח משרות דיסקרטי עם אנונימיות מלאה למעסיק, אזור אישי למועמדים לניהול קורות חיים, והתאמה מתווכת דרך הצוות. בנויה עם דגש על פרטיות והתחשבות בשבת וחג.</p>
+        <p class="lead" style="font-size:.92rem;" data-i18n="prj.v.d">פלטפורמת השמה תעסוקתית: לוח משרות דיסקרטי עם אנונימיות מלאה למעסיק, אזור אישי למועמדים לניהול קורות חיים, והתאמה מתווכת דרך הצוות. כוללת דשבורד ניהול, ובנויה עם דגש על פרטיות והתחשבות בשבת וחג.</p>
         <div class="tags">
           <span class="tag">Next.js</span><span class="tag">NestJS</span><span class="tag">PostgreSQL</span>
         </div>
         <div class="proj-links">
+          <a href="https://der-shtele.vercel.app" target="_blank" rel="noopener" class="btn btn-primary btn-sm"><span data-i18n="prj.viewlive">לצפייה באתר החי</span><svg class="icon"><use href="#i-arrow"/></svg></a>
           <a href="https://github.com/bashy-yacob/der-shtele" target="_blank" rel="noopener" class="btn btn-ghost btn-sm"><svg class="icon"><use href="#i-github"/></svg><span data-i18n="prj.code">קוד ב-GitHub</span></a>
         </div>
       </div>
@@ -536,45 +537,14 @@
   </div>
 </section>
 
-<!-- ============ TESTIMONIALS (hidden until real ones exist) ============
-     מוסתר זמנית. כשיהיו המלצות אמיתיות, הסירי את שורת הפתיחה הזו ואת שורת
-     הסוגר שאחרי הסקשן, כדי להציג שוב את האזור.
-     לעריכת התוכן: חפשי את מפתחות tst בתוך אובייקט I18N.
-
-<section id="testimonials">
-  <div class="wrap">
-    <span class="eyebrow" data-i18n="tst.eyebrow">המלצות</span>
-    <h2 class="title" data-i18n="tst.title">מה לקוחות אומרים</h2>
-    <p class="lead" data-i18n="tst.lead">כמה מילים מאנשים שעבדתי איתם. (תוכן לדוגמה — החליפי בהמלצות אמיתיות.)</p>
-    <div class="grid cards-3" style="margin-top:36px;">
-      <div class="quote-card">
-        <div class="qmark"><svg class="icon"><use href="#i-quote"/></svg></div>
-        <p data-i18n="tst.1.q">"בשי הקשיבה בדיוק למה שרצינו ובנתה לנו אתר שנראה מדהים ועובד מהר. תקשורת נעימה לכל אורך הדרך."</p>
-        <div class="who"><span class="ava" data-i18n="tst.1.i">ד</span><span><b data-i18n="tst.1.n">דנה ל.</b><span data-i18n="tst.1.r">בעלת עסק</span></span></div>
-      </div>
-      <div class="quote-card">
-        <div class="qmark"><svg class="icon"><use href="#i-quote"/></svg></div>
-        <p data-i18n="tst.2.q">"קיבלנו אתר חנות מקצועי בזמן קצר, בדיוק לפי התקציב. ממליצים בחום על העבודה איתה."</p>
-        <div class="who"><span class="ava" data-i18n="tst.2.i">מ</span><span><b data-i18n="tst.2.n">מאיר כ.</b><span data-i18n="tst.2.r">מנהל חנות אונליין</span></span></div>
-      </div>
-      <div class="quote-card">
-        <div class="qmark"><svg class="icon"><use href="#i-quote"/></svg></div>
-        <p data-i18n="tst.3.q">"מקצועית, אחראית וזמינה. האתר החדש שלנו מביא הרבה יותר פניות מבעבר. תודה!"</p>
-        <div class="who"><span class="ava" data-i18n="tst.3.i">ש</span><span><b data-i18n="tst.3.n">שירה ב.</b><span data-i18n="tst.3.r">מטפלת ויועצת</span></span></div>
-      </div>
-    </div>
-  </div>
-</section>
--->
-
 <!-- ===================== ABOUT + EXPERIENCE ===================== -->
 <section id="about">
   <div class="wrap grid two-col">
     <div>
       <span class="eyebrow" data-i18n="abt.eyebrow">אודות</span>
       <h2 class="title" data-i18n="abt.title">קצת עליי</h2>
-      <p class="lead" data-i18n="abt.p1">אני מפתחת web שאוהבת לבנות דברים עד הסוף — מוצרים שלמים, מלוטשים ונקיים מבאגים. אני לא מוותרת על פרט קטן: בשבילי פרויקט "מוכן" הוא כזה שעובד בצורה מושלמת בכל מצב, לא רק כשהכול הולך חלק.</p>
-      <p class="lead" style="margin-top:14px;" data-i18n="abt.p2">החוזק שלי הוא בצד הפיתוח והלוגיקה — קוד נקי, מסודר ואמין מקצה לקצה. עיצוב הוא פחות התחום שלי, ולכן אני שמה דגש על ממשקים פשוטים, ברורים ופונקציונליים, ויודעת לעבוד גם לפי עיצוב מוכן או בשיתוף עם מעצב/ת. מה שחשוב לי: תקשורת ברורה, עמידה בזמנים, ומסירת מוצר שאני באמת גאה בו.</p>
+      <p class="lead" data-i18n="abt.p1">אני מפתחת web שאוהבת לבנות דברים עד הסוף — מוצרים שלמים, מלוטשים ונקיים מבאגים. אני לא מוותרת על פרט קטן: בשבילי פרויקט 'מוכן' הוא כזה שעובד בצורה מושלמת בכל מצב, לא רק כשהכול הולך חלק.</p>
+      <p class="lead" style="margin-top:14px;" data-i18n="abt.p2">החוזק שלי הוא בצד הפיתוח והלוגיקה — קוד נקי, מסודר ואמין מקצה לקצה, וממשקים פשוטים, ברורים ופונקציונליים. אני עובדת מצוין לפי עיצוב מוכן או בשיתוף עם מעצב/ת. מה שחשוב לי: תקשורת ברורה, עמידה בזמנים, ומסירת מוצר שאני באמת גאה בו.</p>
     </div>
     <div>
       <span class="eyebrow" data-i18n="exp.eyebrow">ניסיון</span>
@@ -582,13 +552,13 @@
       <div class="timeline" style="margin-top:20px;">
         <div class="tl-item">
           <h4 data-i18n="exp.1.t">Full Stack Developer — Oz Software (התמחות)</h4>
-          <div class="when" data-i18n="exp.1.w">2025 – היום</div>
+          <div class="when" data-i18n="exp.1.w">2025</div>
           <p data-i18n="exp.1.d">פיתוח מערכות production עם NestJS ו-TypeScript, בניית רכיבי React, ניהול תקשורת שרת עם React Query, ועבודת Git כולל code reviews.</p>
         </div>
         <div class="tl-item">
           <h4 data-i18n="exp.2.t">פרויקטים אישיים — Full-Stack</h4>
-          <div class="when" data-i18n="exp.2.w">2023 – היום</div>
-          <p data-i18n="exp.2.d">בניית אפליקציות full-stack מאפס, כמו GymFlow (ניהול מכון כושר) ו"עד החתונה" — מאפיון ובניית מסכים ועד פריסה לאוויר.</p>
+          <div class="when" data-i18n="exp.2.w">2026 – היום</div>
+          <p data-i18n="exp.2.d">בניית אפליקציות full-stack מאפס, כמו GymFlow (ניהול מכון כושר), 'עד החתונה' ו-Der Shtele — מאפיון ובניית מסכים ועד פריסה לאוויר.</p>
         </div>
       </div>
     </div>
@@ -652,6 +622,9 @@
     <div class="grid contact-grid" style="margin-top:32px;">
       <div>
         <div class="contact-list">
+          <a href="https://wa.me/972548473309" target="_blank" rel="noopener">
+            <span class="ic"><svg class="icon"><use href="#i-chat"/></svg></span>
+          </a>
           <a href="mailto:bashy3309@gmail.com">
             <span class="ic"><svg class="icon"><use href="#i-mail"/></svg></span>
             <span class="meta"><b data-i18n="con.email">אימייל</b><span>bashy3309@gmail.com</span></span>
@@ -681,23 +654,24 @@
             <label for="cf-msg" data-i18n="con.f.msg">הודעה</label>
             <textarea id="cf-msg" name="message" required></textarea>
           </div>
-          <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;"><span data-i18n="con.f.send">שליחה</span><svg class="icon"><use href="#i-send"/></svg></button>
-          <div class="form-status" id="formStatus"></div>
+          <button type="submit" id="sendBtn" class="btn btn-primary" style="width:100%;justify-content:center;"><span data-i18n="con.f.send">שליחה</span><svg class="icon"><use href="#i-send"/></svg></button>
+          <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
         </form>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===================== FLOATING CALL ===================== -->
-<a class="float-btn" href="tel:+972548473309" aria-label="התקשרי אליי"><svg class="icon"><use href="#i-phone"/></svg></a>
-<button class="to-top" id="toTop" aria-label="חזרה למעלה" onclick="scrollToTop()"><svg class="icon"><use href="#i-up"/></svg></button>
+<!-- ===================== FLOATING WHATSAPP ===================== -->
+<a class="float-btn" href="https://wa.me/972548473309" target="_blank" rel="noopener" data-i18n-aria="aria.wa" aria-label="שלחי לי הודעה בוואטסאפ"><svg class="icon"><use href="#i-chat"/></svg></a>
+<button class="to-top" id="toTop" data-i18n-aria="aria.top" aria-label="חזרה למעלה" onclick="scrollToTop()"><svg class="icon"><use href="#i-up"/></svg></button>
 
 <!-- ===================== FOOTER ===================== -->
 <footer>
   <div class="wrap foot-inner">
     <div>© <span id="year"></span> <span data-i18n="brand">באשי קליין</span> · <span data-i18n="foot.tag">מפתחת אתרים</span></div>
     <div class="foot-soc">
+      <a href="https://wa.me/972548473309" target="_blank" rel="noopener" aria-label="WhatsApp"><svg class="icon"><use href="#i-chat"/></svg></a>
       <a href="mailto:bashy3309@gmail.com" aria-label="email"><svg class="icon"><use href="#i-mail"/></svg></a>
       <a href="tel:+972548473309" aria-label="phone"><svg class="icon"><use href="#i-phone"/></svg></a>
       <a href="https://github.com/bashy-yacob" target="_blank" rel="noopener" aria-label="github"><svg class="icon"><use href="#i-github"/></svg></a>
@@ -712,16 +686,17 @@
 const I18N = {
   he: {
     "brand": "באשי קליין",
-    "nav.services": "שירותים", "nav.projects": "פרויקטים", "nav.testimonials": "המלצות", "nav.about": "אודות", "nav.skills": "כישורים", "nav.contact": "צור קשר",
+    "nav.services": "שירותים", "nav.projects": "פרויקטים", "nav.about": "אודות", "nav.skills": "כישורים", "nav.contact": "צור קשר",
+    "aria.theme": "מצב תצוגה", "aria.menu": "תפריט", "aria.wa": "שלחי לי הודעה בוואטסאפ", "aria.top": "חזרה למעלה",
     "hero.avail": "זמינה לעבודה",
     "hero.eyebrow": "מפתחת Full-Stack & בניית אתרים",
     "hero.title": 'בונה אתרים <span class="hl">שמביאים תוצאות</span>',
-    "hero.sub": "היי, אני באשי — מפתחת אתרים. אני בונה אתרי תדמית, חנויות ומערכות web מהירות, נקיות ורספונסיביות. בואו נהפוך את הרעיון שלכם לאתר חי.",
+    "hero.sub": "היי, אני באשי — מפתחת אתרים ומערכות web. אני בונה אתרי תדמית, חנויות ומערכות מותאמות, מהירות, נקיות ורספונסיביות. בואו נהפוך את הרעיון שלכם לאתר חי.",
     "hero.cta1": "בואו נדבר", "hero.cta2": "לעבודות שלי",
     "hero.b1": "אתרים מהירים", "hero.b2": "מותאם מובייל", "hero.b3": "דו-לשוני",
     "hero.card.name": "באשי קליין", "hero.card.role": "Web Developer · Full-Stack",
-    "hero.card.desc": "React · TypeScript · Node.js · בניית אתרים מקצה לקצה.",
-    "hero.stat1n": "10+", "hero.stat1l": "פרויקטים", "hero.stat2n": "2", "hero.stat2l": "שפות", "hero.stat3n": "100%", "hero.stat3l": "מסירות",
+    "hero.card.desc": "React · TypeScript · Node.js · בניית אתרים ומערכות מקצה לקצה.",
+    "hero.stat1n": "3", "hero.stat1l": "מערכות full-stack", "hero.stat2n": "2", "hero.stat2l": "אתרים חיים",
     "srv.eyebrow": "שירותים", "srv.title": "חבילות שמתאימות לעסק שלך",
     "srv.lead": "בחרי את החבילה שמתאימה לך — או דברי איתי לפתרון מותאם אישית.",
     "srv.1.t": "אתר תדמית", "srv.1.p": "לפי הצעה", "srv.1.d": "נוכחות דיגיטלית מקצועית שמייצרת אמון ולקוחות.",
@@ -730,49 +705,44 @@ const I18N = {
     "srv.2.f1": "קטלוג מוצרים וניהול", "srv.2.f2": "סל קנייה ותשלום", "srv.2.f3": "ניהול הזמנות", "srv.2.f4": "מותאם לקידום (SEO)",
     "srv.3.t": "תחזוקת אתרים", "srv.3.p": "לפי הצעה", "srv.3.d": "שקט נפשי — האתר שלך מעודכן, מאובטח וזמין תמיד.",
     "srv.3.f1": "עדכונים שוטפים", "srv.3.f2": "גיבויים ואבטחה", "srv.3.f3": "תיקוני תקלות", "srv.3.f4": "תמיכה שוטפת",
+    "srv.4.t": "מערכות ותוכנות מותאמות", "srv.4.p": "לפי הצעה", "srv.4.d": "מערכת web שנבנית בדיוק לצורכי העסק או הקהילה שלך, מהאפיון ועד העלאה לאוויר.",
+    "srv.4.f1": "דשבורד ניהול", "srv.4.f2": "אזור אישי והרשאות", "srv.4.f3": "בסיס נתונים ולוגיקה עסקית", "srv.4.f4": "התאמה לעברית ולצרכים ייחודיים",
     "srv.note": "המחיר נקבע לפי היקף הפרויקט — דברו איתי ואשמח לתת הצעה מותאמת אישית.",
     "prj.eyebrow": "תיק עבודות", "prj.title": "פרויקטים נבחרים",
-    "prj.lead": "כמה מהדברים שבניתי — כולל אתר חי שאפשר ללחוץ ולראות עכשיו.",
+    "prj.lead": "כמה מהדברים שבניתי — כולל אתרים חיים שאפשר ללחוץ ולראות עכשיו.",
     "prj.live": "אתר חי", "prj.viewlive": "לצפייה באתר החי", "prj.code": "קוד ב-GitHub",
-    "prj.w.t": "עד החתונה — ספירה לאחור", "prj.w.d": "יוצר עמודי ספירה לאחור אישיים לחתונה. כל זוג מקבל קישור ייחודי לשיתוף, קיר ברכות פתוח לאורחים, העלאת הזמנה, תאריך עברי ומצב 'מזל טוב' אוטומטי ביום החתונה.",
+    "prj.w.t": "עד החתונה — ספירה לאחור", "prj.w.d": "יוצר עמודי ספירה לאחור אישיים לחתונה. כל זוג מקבל קישור ייחודי לשיתוף, קיר ברכות פתוח לאורחים, העלאת הזמנה, תאריך עברי ומצב 'מזל טוב' אוטומטי ביום החתונה. פותח מקצה לקצה, מהאפיון ועד הפריסה.",
     "prj.g.t": "GymFlow — ניהול מכון כושר", "prj.g.d": "מערכת Full-Stack לניהול מכון כושר: מתאמנים ומאמנים, מנויים וחבילות מחיר, שיעורים וחדרים, מעקב תשלומים, הקצאת תוכניות אימון ומערכת הודעות בין מאמן למתאמן — עם דשבורד ניהול.",
-    "prj.v.t": "Der Shtele — פלטפורמת השמה", "prj.v.d": "פלטפורמת השמה תעסוקתית: לוח משרות דיסקרטי עם אנונימיות מלאה למעסיק, אזור אישי למועמדים לניהול קורות חיים, והתאמה מתווכת דרך הצוות. בנויה עם דגש על פרטיות והתחשבות בשבת וחג.",
-    "tst.eyebrow": "המלצות", "tst.title": "מה לקוחות אומרים",
-    "tst.lead": "כמה מילים מאנשים שעבדתי איתם. (תוכן לדוגמה — החליפי בהמלצות אמיתיות.)",
-    "tst.1.q": '"בשי הקשיבה בדיוק למה שרצינו ובנתה לנו אתר שנראה מדהים ועובד מהר. תקשורת נעימה לכל אורך הדרך."',
-    "tst.1.n": "דנה ל.", "tst.1.r": "בעלת עסק", "tst.1.i": "ד",
-    "tst.2.q": '"קיבלנו אתר חנות מקצועי בזמן קצר, בדיוק לפי התקציב. ממליצים בחום על העבודה איתה."',
-    "tst.2.n": "מאיר כ.", "tst.2.r": "מנהל חנות אונליין", "tst.2.i": "מ",
-    "tst.3.q": '"מקצועית, אחראית וזמינה. האתר החדש שלנו מביא הרבה יותר פניות מבעבר. תודה!"',
-    "tst.3.n": "שירה ב.", "tst.3.r": "מטפלת ויועצת", "tst.3.i": "ש",
+    "prj.v.t": "Der Shtele — פלטפורמת השמה", "prj.v.d": "פלטפורמת השמה תעסוקתית: לוח משרות דיסקרטי עם אנונימיות מלאה למעסיק, אזור אישי למועמדים לניהול קורות חיים, והתאמה מתווכת דרך הצוות. כוללת דשבורד ניהול, ובנויה עם דגש על פרטיות והתחשבות בשבת וחג.",
     "abt.eyebrow": "אודות", "abt.title": "קצת עליי",
     "abt.p1": "אני מפתחת web שאוהבת לבנות דברים עד הסוף — מוצרים שלמים, מלוטשים ונקיים מבאגים. אני לא מוותרת על פרט קטן: בשבילי פרויקט 'מוכן' הוא כזה שעובד בצורה מושלמת בכל מצב, לא רק כשהכול הולך חלק.",
-    "abt.p2": "החוזק שלי הוא בצד הפיתוח והלוגיקה — קוד נקי, מסודר ואמין מקצה לקצה. עיצוב הוא פחות התחום שלי, ולכן אני שמה דגש על ממשקים פשוטים, ברורים ופונקציונליים, ויודעת לעבוד גם לפי עיצוב מוכן או בשיתוף עם מעצב/ת. מה שחשוב לי: תקשורת ברורה, עמידה בזמנים, ומסירת מוצר שאני באמת גאה בו.",
+    "abt.p2": "החוזק שלי הוא בצד הפיתוח והלוגיקה — קוד נקי, מסודר ואמין מקצה לקצה, וממשקים פשוטים, ברורים ופונקציונליים. אני עובדת מצוין לפי עיצוב מוכן או בשיתוף עם מעצב/ת. מה שחשוב לי: תקשורת ברורה, עמידה בזמנים, ומסירת מוצר שאני באמת גאה בו.",
     "exp.eyebrow": "ניסיון", "exp.title": "ניסיון מקצועי",
-    "exp.1.t": "Full Stack Developer — Oz Software (התמחות)", "exp.1.w": "2025 – היום", "exp.1.d": "פיתוח מערכות production עם NestJS ו-TypeScript, בניית רכיבי React, ניהול תקשורת שרת עם React Query, ועבודת Git כולל code reviews.",
-    "exp.2.t": "פרויקטים אישיים — Full-Stack", "exp.2.w": "2023 – היום", "exp.2.d": "בניית אפליקציות full-stack מאפס, כמו GymFlow (ניהול מכון כושר) ו'עד החתונה' — מאפיון ובניית מסכים ועד פריסה לאוויר.",
+    "exp.1.t": "Full Stack Developer — Oz Software (התמחות)", "exp.1.w": "2025", "exp.1.d": "פיתוח מערכות production עם NestJS ו-TypeScript, בניית רכיבי React, ניהול תקשורת שרת עם React Query, ועבודת Git כולל code reviews.",
+    "exp.2.t": "פרויקטים אישיים — Full-Stack", "exp.2.w": "2023 – היום", "exp.2.d": "בניית אפליקציות full-stack מאפס, כמו GymFlow (ניהול מכון כושר), 'עד החתונה' ו-Der Shtele — מאפיון ובניית מסכים ועד פריסה לאוויר.",
     "skl.eyebrow": "כישורים", "skl.title": "טכנולוגיות וכלים", "skl.fe": "Frontend", "skl.be": "Backend", "skl.tools": "כלים",
     "edu.eyebrow": "השכלה", "edu.title": "השכלה והכשרה",
     "edu.1.t": "הנדסת תוכנה — מה״ט (MAHAT)", "edu.1.w": "2023 – 2025", "edu.1.d": "דיפלומת הנדסאי תוכנה.",
     "edu.2.t": "לימודים אקדמיים מורחבים — מכון לב", "edu.2.w": "2023 – 2025", "edu.2.d": "מבני נתונים ואלגוריתמים, מערכות הפעלה, לוגיקה ואלגברה לינארית, מתמטיקה בדידה, מבוא לבינה מלאכותית, וחומרה ומערכות מחשב.",
     "con.eyebrow": "צור קשר", "con.title": "בואו נבנה משהו ביחד",
     "con.lead": "יש לך פרויקט בראש? מלאי את הטופס או דברי איתי ישירות — אשמח לשמוע.",
-    "con.email": "אימייל", "con.phone": "טלפון", "con.gh": "GitHub",
+    "con.wa": "וואטסאפ", "con.email": "אימייל", "con.phone": "טלפון", "con.gh": "GitHub",
     "con.f.name": "שם מלא", "con.f.email": "אימייל", "con.f.msg": "הודעה", "con.f.send": "שליחה",
     "foot.tag": "מפתחת אתרים"
   },
   en: {
     "brand": "Bashy Klein",
-    "nav.services": "Services", "nav.projects": "Projects", "nav.testimonials": "Reviews", "nav.about": "About", "nav.skills": "Skills", "nav.contact": "Contact",
+    "nav.services": "Services", "nav.projects": "Projects", "nav.about": "About", "nav.skills": "Skills", "nav.contact": "Contact",
+    "aria.theme": "Toggle theme", "aria.menu": "Menu", "aria.wa": "Message me on WhatsApp", "aria.top": "Back to top",
     "hero.avail": "Available for work",
     "hero.eyebrow": "Full-Stack Developer & Web Builder",
     "hero.title": 'Building websites <span class="hl">that get results</span>',
-    "hero.sub": "Hi, I'm Bashy — a web developer. I build fast, clean and responsive landing pages, online stores and web systems. Let's turn your idea into a live website.",
+    "hero.sub": "Hi, I'm Bashy — a web and systems developer. I build fast, clean and responsive landing pages, online stores and custom web systems. Let's turn your idea into a live website.",
     "hero.cta1": "Let's talk", "hero.cta2": "View my work",
     "hero.b1": "Fast websites", "hero.b2": "Mobile-friendly", "hero.b3": "Bilingual",
     "hero.card.name": "Bashy Klein", "hero.card.role": "Web Developer · Full-Stack",
     "hero.card.desc": "React · TypeScript · Node.js · end-to-end web development.",
-    "hero.stat1n": "10+", "hero.stat1l": "Projects", "hero.stat2n": "2", "hero.stat2l": "Languages", "hero.stat3n": "100%", "hero.stat3l": "Commitment",
+    "hero.stat1n": "3", "hero.stat1l": "Full-stack systems", "hero.stat2n": "2", "hero.stat2l": "Live sites",
     "srv.eyebrow": "Services", "srv.title": "Packages that fit your business",
     "srv.lead": "Pick the package that suits you — or talk to me for a custom solution.",
     "srv.1.t": "Landing / Brand Site", "srv.1.p": "By quote", "srv.1.d": "A professional digital presence that builds trust and brings clients.",
@@ -781,46 +751,44 @@ const I18N = {
     "srv.2.f1": "Product catalog & management", "srv.2.f2": "Cart & checkout", "srv.2.f3": "Order management", "srv.2.f4": "SEO-ready",
     "srv.3.t": "Website Maintenance", "srv.3.p": "By quote", "srv.3.d": "Peace of mind — your site stays updated, secure and online.",
     "srv.3.f1": "Ongoing updates", "srv.3.f2": "Backups & security", "srv.3.f3": "Bug fixes", "srv.3.f4": "Ongoing support",
+    "srv.4.t": "Custom Systems & Software", "srv.4.p": "By quote", "srv.4.d": "A web system built exactly for your business or community needs, from spec to deployment.",
+    "srv.4.f1": "Admin dashboard", "srv.4.f2": "User accounts & permissions", "srv.4.f3": "Database & business logic", "srv.4.f4": "Hebrew/RTL support and tailored requirements",
     "srv.note": "Pricing depends on the project scope — talk to me and I'll be glad to send a tailored quote.",
     "prj.eyebrow": "Portfolio", "prj.title": "Selected Projects",
-    "prj.lead": "A few things I've built — including a live site you can open right now.",
+    "prj.lead": "A few things I've built — including live sites you can open right now.",
     "prj.live": "Live", "prj.viewlive": "View live site", "prj.code": "Code on GitHub",
-    "prj.w.t": "Until the Wedding — Countdown", "prj.w.d": "A creator of personalized wedding countdown pages. Each couple gets a unique shareable link, an open guest blessings wall, invitation upload, Hebrew dates and an automatic 'Mazel Tov' mode on the wedding day.",
+    "prj.w.t": "Until the Wedding — Countdown", "prj.w.d": "A creator of personalized wedding countdown pages. Each couple gets a unique shareable link, an open guest blessings wall, invitation upload, Hebrew dates and an automatic 'Mazel Tov' mode on the wedding day. Built end to end, from spec to deployment.",
     "prj.g.t": "GymFlow — Gym Management System", "prj.g.d": "A full-stack gym-management system: trainees and trainers, subscriptions and pricing packages, classes and rooms, payment tracking, training-program assignment, and trainer–trainee messaging — with an admin dashboard.",
-    "prj.v.t": "Der Shtele — Job Placement Platform", "prj.v.d": "A job-placement platform: a discreet job board with full employer anonymity, a private candidate portal for resume management, and staff-mediated matching — built with privacy and Sabbath/holiday awareness in mind.",
-    "tst.eyebrow": "Testimonials", "tst.title": "What clients say",
-    "tst.lead": "A few words from people I've worked with. (Sample content — replace with real testimonials.)",
-    "tst.1.q": '"Bashy listened to exactly what we wanted and built us a site that looks amazing and loads fast. A pleasure to work with throughout."',
-    "tst.1.n": "Dana L.", "tst.1.r": "Business owner", "tst.1.i": "D",
-    "tst.2.q": '"We got a professional store site in a short time, right on budget. Highly recommend working with her."',
-    "tst.2.n": "Meir C.", "tst.2.r": "Online store manager", "tst.2.i": "M",
-    "tst.3.q": '"Professional, reliable and responsive. Our new site brings far more inquiries than before. Thank you!"',
-    "tst.3.n": "Shira B.", "tst.3.r": "Therapist & consultant", "tst.3.i": "S",
+    "prj.v.t": "Der Shtele — Job Placement Platform", "prj.v.d": "A job-placement platform: a discreet job board with full employer anonymity, a private candidate portal for resume management, and staff-mediated matching. Includes an admin dashboard, and is built with privacy and Sabbath/holiday awareness in mind.",
     "abt.eyebrow": "About", "abt.title": "A bit about me",
     "abt.p1": "I'm a web developer who loves building things all the way — complete, polished products with no bugs. I sweat the details: to me a project is 'done' only when it works flawlessly in every case, not just the happy path.",
-    "abt.p2": "My strength is on the development and logic side — clean, well-structured, reliable code end to end. Design isn't my main field, so I focus on simple, clear and functional interfaces, and I'm glad to build to an existing design or work alongside a designer. What matters to me: clear communication, meeting deadlines, and delivering something I'm genuinely proud of.",
+    "abt.p2": "My strength is on the development and logic side — clean, well-structured, reliable code end to end, with simple, clear and functional interfaces. I work great from an existing design or alongside a designer. What matters to me: clear communication, meeting deadlines, and delivering something I'm genuinely proud of.",
     "exp.eyebrow": "Experience", "exp.title": "Professional Experience",
-    "exp.1.t": "Full Stack Developer — Oz Software (Practicum)", "exp.1.w": "2025 – Present", "exp.1.d": "Developing production systems with NestJS and TypeScript, building React components, managing server communication with React Query, and working in Git including code reviews.",
-    "exp.2.t": "Personal Projects — Full-Stack", "exp.2.w": "2023 – Present", "exp.2.d": "Building full-stack apps from scratch, such as GymFlow (gym management) and 'Until the Wedding' — from spec and screens to deployment.",
+    "exp.1.t": "Full Stack Developer — Oz Software (Practicum)", "exp.1.w": "2025", "exp.1.d": "Developing production systems with NestJS and TypeScript, building React components, managing server communication with React Query, and working in Git including code reviews.",
+    "exp.2.t": "Personal Projects — Full-Stack", "exp.2.w": "2023 – Present", "exp.2.d": "Building full-stack apps from scratch, such as GymFlow (gym management), 'Until the Wedding' and Der Shtele — from spec and screens to deployment.",
     "skl.eyebrow": "Skills", "skl.title": "Technologies & Tools", "skl.fe": "Frontend", "skl.be": "Backend", "skl.tools": "Tools",
     "edu.eyebrow": "Education", "edu.title": "Education & Training",
     "edu.1.t": "Software Engineering Diploma — MAHAT", "edu.1.w": "2023 – 2025", "edu.1.d": "Practical software-engineering diploma.",
     "edu.2.t": "Extended Academic Studies — Machon Lev", "edu.2.w": "2023 – 2025", "edu.2.d": "Data structures & algorithms, operating systems, logic and linear algebra, discrete math, intro to AI, and computer hardware and systems.",
     "con.eyebrow": "Contact", "con.title": "Let's build something together",
     "con.lead": "Got a project in mind? Fill the form or reach out directly — I'd love to hear about it.",
-    "con.email": "Email", "con.phone": "Phone", "con.gh": "GitHub",
+    "con.wa": "WhatsApp", "con.email": "Email", "con.phone": "Phone", "con.gh": "GitHub",
     "con.f.name": "Full name", "con.f.email": "Email", "con.f.msg": "Message", "con.f.send": "Send",
     "foot.tag": "Web Developer"
   }
 };
 
-/* ====== Web3Forms: paste your free access key here to enable auto-email ======
-   Get one at https://web3forms.com (free). Replace the placeholder below.
-   While it stays as the placeholder, the form gracefully falls back to mailto. */
+/* ====== Web3Forms access key (public by design) ======
+   מומלץ: בלוח הבקרה של Web3Forms להגביל את המפתח לדומיין של האתר בלבד. */
 const WEB3FORMS_KEY = "228d1b99-e0da-49f4-9e8f-5dab62543db5";
 
+/* ---------- safe storage (does not break if storage is blocked) ---------- */
+function safeGet(k, d) { try { return window.localStorage.getItem(k) || d; } catch (e) { return d; } }
+function safeSet(k, v) { try { window.localStorage.setItem(k, v); } catch (e) {} }
+
 /* ---------- language ---------- */
-let currentLang = localStorage.getItem("lang") || "he";
+let currentLang = safeGet("lang", "he");
+if (!I18N[currentLang]) currentLang = "he";
 
 function applyLang(lang) {
   const dict = I18N[lang];
@@ -831,9 +799,13 @@ function applyLang(lang) {
     const key = el.getAttribute("data-i18n");
     if (dict[key] !== undefined) el.innerHTML = dict[key];
   });
+  document.querySelectorAll("[data-i18n-aria]").forEach(function (el) {
+    const key = el.getAttribute("data-i18n-aria");
+    if (dict[key] !== undefined) el.setAttribute("aria-label", dict[key]);
+  });
   document.getElementById("langBtn").textContent = (lang === "he") ? "EN" : "עב";
   currentLang = lang;
-  localStorage.setItem("lang", lang);
+  safeSet("lang", lang);
 }
 function toggleLang() { applyLang(currentLang === "he" ? "en" : "he"); }
 
@@ -852,6 +824,7 @@ function submitForm(e) {
   const email = f.email.value.trim();
   const message = f.message.value.trim();
   const status = document.getElementById("formStatus");
+  const btn = document.getElementById("sendBtn");
   const t = (currentLang === "he");
 
   // Fallback to mailto if no Web3Forms key configured yet
@@ -865,6 +838,8 @@ function submitForm(e) {
     return false;
   }
 
+  if (btn.disabled) { return false; } // prevent double submit
+  btn.disabled = true;
   status.style.color = "var(--muted)";
   status.textContent = t ? "שולח…" : "Sending…";
   fetch("https://api.web3forms.com/submit", {
@@ -881,26 +856,26 @@ function submitForm(e) {
     }).catch(function () {
       status.style.color = "var(--accent-2)";
       status.textContent = t ? "שגיאה בשליחה — נסי שוב או שלחי מייל ישירות." : "Sending failed — please try again or email directly.";
-    });
+    }).then(function () { btn.disabled = false; });
   return false;
 }
 
 /* ---------- theme (light / dark) ---------- */
-let currentTheme = localStorage.getItem("theme") || "light";
+let currentTheme = safeGet("theme", "light");
 function applyTheme(theme) {
   if (theme === "dark") document.documentElement.setAttribute("data-theme", "dark");
   else document.documentElement.removeAttribute("data-theme");
   const use = document.querySelector("#themeBtn use");
   if (use) use.setAttribute("href", theme === "dark" ? "#i-sun" : "#i-moon");
   currentTheme = theme;
-  localStorage.setItem("theme", theme);
+  safeSet("theme", theme);
 }
 function toggleTheme() { applyTheme(currentTheme === "dark" ? "light" : "dark"); }
 
 /* ---------- scroll reveal ---------- */
 function initReveal() {
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-  const targets = document.querySelectorAll(".card, .quote-card, .tl-item, .hero-card");
+  const targets = document.querySelectorAll(".card, .tl-item, .hero-card");
   const io = new IntersectionObserver(function (entries) {
     entries.forEach(function (e) {
       if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
